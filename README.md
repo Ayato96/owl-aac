@@ -1,3 +1,0 @@
-#Otserver Website with Laravel
-
-;)
