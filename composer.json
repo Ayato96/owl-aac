@@ -1,9 +1,23 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "ivenspontes/owl-aac",
+    "description": "Otserv Website with Laravel.",
+    "keywords": ["Otserv", "Laravel", "owl-aac"],
     "license": "MIT",
     "type": "project",
+    "authors": [
+        {
+            "name": "Ivens Pontes",
+            "email": "contato@ivenspontes.me",
+            "homepage": "http://www.ivenspontes.me",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "contato@ivenspontes.me",
+        "source": "https://github.com/ivenspontes/owl-aac",
+        "issues": "https://github.com/ivenspontes/owl-acc/issues",
+        "docs": "https://github.com/ivenspontes/owl-aac/wiki"
+    },
     "require": {
         "php": ">=5.6.4",
         "laravel/framework": "5.3.*"
