@@ -1,9 +1,15 @@
+
+
+<p align="center">
+<img src="http://goo.gl/QqcXqW"><br>
+What are you waiting for? Something amazing, I guess.
+</p>
 #Otserv Website with Laravel
 
 This application is in development, if you want to help fork it and make a pull request.
 Now no have anything ready, but i'm studing to make some things beautiful. ;)
 
-## requirements
+## Requirements
 + composer
 + php
 + nodejs (optional)
@@ -13,21 +19,12 @@ Now no have anything ready, but i'm studing to make some things beautiful. ;)
 
 Run in terminal:
 
-```shell
-$ composer install
 
-$ cp .env.example .env
+<kbd>$ composer install</kbd>
 
-$ php artisan key:generate
-```
+<kbd>$ cp .env.example .env</kbd>
 
-**remember to modify .env file with your database credentials**
+<kbd>$ php artisan key:generate</kbd>
 
-## Laravel PHP Framework
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
-
+**Remember to modify .env file with your database credentials**
