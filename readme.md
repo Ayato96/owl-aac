@@ -1,7 +1,27 @@
 #Otserv Website with Laravel
 
-Application ready! Build something amazing.
+This application is in development, if you want to help fork it and make a pull request.
+Now no have anything ready, but i'm studing to make some things beautiful. ;)
 
+## requirements
++ composer
++ php
++ nodejs (optional)
++ vim (this is so cool, serious! :wq!)
+
+## Installation
+
+Run in terminal:
+
+```shell
+$ composer install
+
+$ cp .env.example .env
+
+$ php artisan key:generate
+```
+
+**remember to modify .env file with your database credentials**
 
 ## Laravel PHP Framework
 
