@@ -34,6 +34,7 @@
 
 @endif
 
+<div class="panel-group">
 	<div id="leftmenu" class="leftmenu">
 
 		<div class="panel panel-primary">
