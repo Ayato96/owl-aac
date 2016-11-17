@@ -21,9 +21,9 @@ Route::get('/', function () {
 /*
  * #LOGIN
  */
-Route::get('login', 'AuthController@login');
-Route::post('auth','AuthController@authenticate');
-Route::post('logout','AuthController@logout');
+Route::get('account/login', 'AuthController@login')->name('account.login');
+Route::post('account/auth','AuthController@authenticate')->name('account.auth');
+Route::post('account/logout','AuthController@logout')->name('account.logout');
 
 /*
  * #ACCOUNT

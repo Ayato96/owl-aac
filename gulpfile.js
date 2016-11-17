@@ -15,13 +15,17 @@ require('laravel-elixir-vue');
 
 elixir(function(mix) {
 	mix.scripts([
-        '../../../node_modules/bootstrap/dist/js/bootstrap.js',
-        '../../../node_modules/jquery/dist/jquery.js',
+        '../../../node_modules/jquery/dist/jquery.min.js',
+        '../../../node_modules/bootstrap/dist/js/bootstrap.min.js',
         'owl.js'
     ], 'public/assets/js/owl.js');
+
     mix.styles([
-        '../../../node_modules/bootstrap/dist/css/bootstrap.css',
+        '../../../node_modules/bootstrap/dist/css/bootstrap.min.css',
+        '../../../node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
         'owl.css'
     ], 'public/assets/css/owl.css');
+
+    mix.copy('node_modules/bootstrap/fonts','public/assets/fonts');
 
 });
