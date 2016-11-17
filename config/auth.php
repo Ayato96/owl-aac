@@ -74,10 +74,6 @@ return [
             'driver' => 'eloquent',
             'model' => App\Account::class,
         ],
-        'account' => [
-            'driver' => 'eloquent',
-            'model' => App\Account::class,
-        ],
 
         // 'users' => [
         //     'driver' => 'database',
