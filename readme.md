@@ -28,3 +28,5 @@ Run in terminal:
 
 
 **Remember to modify .env file with your database credentials**
+
+<kbd>$ php artisan migrate</kbd>
