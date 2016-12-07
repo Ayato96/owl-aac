@@ -43,16 +43,16 @@
 	<div class="col-md-6">
 		<div class="btn-group center-block" data-toggle="buttons">
 			<label class="btn btn-primary active">
-				<input type="radio" name="vocation" id="vocation" autocomplete="off" value="5" checked> Sorcerer
+				<input type="radio" name="vocation" id="vocation" autocomplete="off" value="1" checked> Sorcerer
 			</label>
 			<label class="btn btn-primary">
-				<input type="radio" name="vocation" id="vocation" autocomplete="off" value="6"> Druid
+				<input type="radio" name="vocation" id="vocation" autocomplete="off" value="2"> Druid
 			</label>
 			<label class="btn btn-primary">
-				<input type="radio" name="vocation" id="vocation" autocomplete="off" value="7"> Paladin
+				<input type="radio" name="vocation" id="vocation" autocomplete="off" value="3"> Paladin
 			</label>
 			<label class="btn btn-primary">
-				<input type="radio" name="vocation" id="vocation" autocomplete="off" value="8"> Knight
+				<input type="radio" name="vocation" id="vocation" autocomplete="off" value="4"> Knight
 			</label>
 		</div>
 		@if ($errors->has('vocation'))

@@ -17,15 +17,20 @@ elixir(function(mix) {
 	mix.scripts([
         '../../../node_modules/jquery/dist/jquery.min.js',
         '../../../node_modules/bootstrap/dist/js/bootstrap.min.js',
+        'metisMenu.js',
+        'sb-admin-2.js',
         'owl.js'
     ], 'public/assets/js/owl.js');
 
     mix.styles([
         '../../../node_modules/bootstrap/dist/css/bootstrap.min.css',
         '../../../node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
+        '../../../node_modules/font-awesome/css/font-awesome.min.css',
+        'sb-admin-2.css',
+        'MetisMenu.css',
         'owl.css'
     ], 'public/assets/css/owl.css');
 
-    mix.copy('node_modules/bootstrap/fonts','public/assets/fonts');
+    mix.copy(['node_modules/bootstrap/fonts', 'node_modules/font-awesome/fonts'], 'public/assets/fonts');
 
 });

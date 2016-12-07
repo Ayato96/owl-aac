@@ -29,9 +29,8 @@
 			</tr>
 		</table>
 		<div class="text-center margin-bottom-5">
-			<a href="" class="btn btn-primary btn-sm">Change Password</a>
-			<a href="" class="btn btn-primary btn-sm">Change Email</a>
-			<a href="" class="btn btn-primary btn-sm">exemplo3</a>
+			<a href="account/change/password" class="btn btn-primary btn-sm">Change Password</a>
+			<a href="account/change/email" class="btn btn-primary btn-sm">Change Email</a>
 		</div>
 	</div>
 </div>
@@ -48,7 +47,7 @@
 			</tr>
 			@foreach ($players as $player)
 			<tr>
-				<td class="col-md-1">1.</td>
+				<td class="col-md-1">{{ $loop->iteration }}.</td>
 				<td>{{ $player->name }}</td>
 				<td>{{ $player->vocation }}</td>
 				<td class="col-md-3">

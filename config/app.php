@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Sao_Paulo',
 
     /*
     |--------------------------------------------------------------------------
@@ -183,7 +183,7 @@ return [
          */
         Thetispro\Setting\SettingServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        
+        GrahamCampbell\HTMLMin\HTMLMinServiceProvider::class,
         
         ],
 
@@ -238,6 +238,7 @@ return [
     'Setting' => Thetispro\Setting\Facades\Setting::class,
     'Form' => Collective\Html\FormFacade::class,
     'Html' => Collective\Html\HtmlFacade::class,
+    'HTMLMin' => GrahamCampbell\HTMLMin\Facades\HTMLMin::class
     ],
 
     ];

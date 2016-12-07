@@ -30,7 +30,7 @@ class AccountController extends Controller
 	public function store(CreateAccount $request)
 	{	
 		$this->createAccount($request);
-		return redirect('/login');
+		return redirect()->route('account.login');
 	}
 
 	public function createAccount(CreateAccount $request)
@@ -38,5 +38,4 @@ class AccountController extends Controller
 		$data = $request->only(['name', 'email', 'password']);
 		$account = Account::create($data);
 	}
-
 }

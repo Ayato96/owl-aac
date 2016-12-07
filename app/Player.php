@@ -3,13 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
+
+use Thetispro\Setting\Facades\Setting;
 
 class Player extends Model
 {
-	public function user()
-	{
-		return $this->belongsTo('App\Account');
-	}
 	protected $table = 'players';
 
 	protected $attributes = array(
@@ -26,8 +25,7 @@ class Player extends Model
 		'cap' => 450,
 		);
 
-	protected $fillable = 
-	[
+	protected $fillable = [
 	'name', 'account_id', 'vocation', 'sex', 'town_id'
 	];
 
@@ -40,4 +38,83 @@ class Player extends Model
 	'deleted', 'description', 
 	];
 
+	protected $dates = [
+	'created_at',
+	'updated_at',
+	];
+
+	public function user()
+	{
+		return $this->belongsTo('App\Account','account_id');
+	}
+
+	/*
+	* GETS AND SETTERS
+	*/
+
+	public function getOnlineAttribute($value)
+	{
+		if ($value==0)
+		{
+			return 'Offline';
+		}
+		else
+		{
+			return 'Online';	
+		}
+	}
+
+	public function getVocationAttribute($value)
+	{
+		foreach(Setting::get('Server.Vocations') as $vocation)
+		{
+			if ($value == $vocation['id']) return $vocation['name'];
+		}
+	}
+
+	public function getMarriageAttribute($value)
+	{
+		return 'single';
+	}
+
+	public function getSexAttribute($value)
+	{
+		return 'male';
+	}
+
+	public function getWorldIdAttribute($value)
+	{
+		foreach(Setting::get('Server.Worlds') as $world)
+		{
+			if ($value == $world['id']) return $world['name'];
+		}
+	}
+
+	public function getTownIdAttribute($value)
+	{
+		foreach(Setting::get('Server.Towns') as $town)
+		{
+			if ($value == $town['id']) return $town['name'];
+		}
+	}
+
+	public function getLastloginAttribute($value)
+	{
+		if ($value==0) {
+			return 'Never loggedin';	
+		}
+		else
+		{
+			return Carbon::createFromTimestamp($value)->toDateTimeString();
+		}
+		
+	}
+
+	//slug character name
+	public function setNameAttribute($value)
+	{
+		$this->attributes['name'] = ucwords($value);
+		$this->attributes['slug'] = str_slug($value, '-');
+	}
+	
 }

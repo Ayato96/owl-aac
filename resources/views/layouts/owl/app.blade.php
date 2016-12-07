@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Owl - @yield('title')</title>
+	<title>{{ Setting::get('Server.Name') }} - @yield('title')</title>
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/css/owl.css') }}">
 </head>
 <body>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddSlugToTablePlayers extends Migration
+class AddColumnIsAdminToAccount extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddSlugToTablePlayers extends Migration
      */
     public function up()
     {
-        Schema::table('players', function (Blueprint $table) {
-            $table->string('slug')->unique();
+        Schema::table('accounts', function (Blueprint $table) {
+            $table->boolean('is_admin')->default(0)->comment('0 default, 1 admin');
         });
     }
 
@@ -25,8 +25,8 @@ class AddSlugToTablePlayers extends Migration
      */
     public function down()
     {
-        Schema::table('players', function (Blueprint $table) {
-            $table->dropColumn('slug');
+        Schema::table('accounts', function (Blueprint $table) {
+            $table->dropColumn('is_admin');
         });
     }
 }

@@ -12,33 +12,38 @@ class Account extends Authenticatable
 
     protected $table = 'accounts';
 
+    protected $casts = [
+    'is_admin' => 'boolean',
+    ];
+
+    protected $fillable = [
+    'name', 'email', 'password',
+    ];
+
+    protected $hidden = [
+    'password', 'remember_token',
+    ];
+
+    protected $guarded = ['is_admin', 'salt', 'premdays', 'lastday', 'key', 'blocked', 'warnings', 'group_id'];
+
+    public function isAdmin()
+    {
+        return $this->is_admin;
+    }
+    
+    //Hash sha1 password on create
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::make($value);
+    }
+
     public function players()
     {
         return $this->hasMany('App\Player');
     }
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-    'name', 'email', 'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-    'password', 'remember_token',
-    ];
-
-    //Hash sha1 password on create
-    public function setPasswordAttribute($value) {
-        $this->attributes['password'] = Hash::make($value);
+    public function news()
+    {
+        return $this->hasMany('App\New');
     }
-
-
 }

@@ -46,10 +46,6 @@ return [
             'provider' => 'users',
         ],
 
-        'account' => [
-            'driver' => 'token',
-            'provider' => 'account',
-        ],
     ],
 
     /*

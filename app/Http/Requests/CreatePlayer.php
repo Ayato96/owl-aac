@@ -33,9 +33,9 @@ class CreatePlayer extends FormRequest
     {
         return [
         'name' => 'required|min:5|max:32|unique:players|not_contains|character_name',
-        'vocation' => 'required|between:1,4',
-        'town_id' => 'required|between:1,3',
-        'sex' => 'required|between:0,1',
+        'vocation' => 'required|integer|in:1,2,3,4',
+        'town_id' => 'required|integer|in:1,2,3',
+        'sex' => 'required|integer|in:0,1',
         ];
     }
 }

@@ -5,7 +5,7 @@
 		<div class="panel-body">
 			@foreach ($playerRank as $playerRank)
 			<div class="rank-players">
-			{{ $loop->iteration }}- <a href="">{!! $playerRank->name !!}</a>
+			{{ $loop->iteration }}- <a href="/player/{{ $playerRank->slug }}">{!! $playerRank->name !!}</a>
 				<span class="badge">{!! $playerRank->level !!}</span>
 			</div>
 			@endforeach
