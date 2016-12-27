@@ -19,6 +19,9 @@ elixir(function(mix) {
         '../../../node_modules/bootstrap/dist/js/bootstrap.min.js',
         'metisMenu.js',
         'sb-admin-2.js',
+        'jquery.dataTables.js',
+        'dataTables.bootstrap.js',
+        'dataTables.responsive.js',
         'owl.js'
     ], 'public/assets/js/owl.js');
 
@@ -26,8 +29,10 @@ elixir(function(mix) {
         '../../../node_modules/bootstrap/dist/css/bootstrap.min.css',
         '../../../node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
         '../../../node_modules/font-awesome/css/font-awesome.min.css',
-        'sb-admin-2.css',
         'MetisMenu.css',
+        'dataTables.bootstrap.css',
+        'dataTables.responsive.css',
+        'sb-admin-2.css',
         'owl.css'
     ], 'public/assets/css/owl.css');
 

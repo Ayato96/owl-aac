@@ -65,3 +65,11 @@ margin-bottom: 5px;
 {
 	padding: 0px;
 }
+
+/*
+* #TEXTAREA 
+*/
+.noresize
+{
+  resize: none; 
+}
