@@ -42,8 +42,4 @@ class Account extends Authenticatable
         return $this->hasMany('App\Player');
     }
 
-    public function news()
-    {
-        return $this->hasMany('App\New');
-    }
 }

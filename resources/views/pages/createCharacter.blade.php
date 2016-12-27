@@ -5,7 +5,7 @@
 
 @section('content')
 
-{!! Form::open(['route' => 'player.store', 'class'=>'form-horizontal', 'id' => 'teste']) !!}
+{!! Form::open(['route' => 'player.store', 'class'=>'form-horizontal']) !!}
 
 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 	{!! Form::label('name', 'Character Name', ['class' => 'col-md-4 control-label']) !!}

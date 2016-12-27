@@ -5,6 +5,18 @@
 
 @section('content')
 
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
 <div class="panel panel-primary">
 	<div class="panel-heading">Account Status</div>
 	<div class="panel-body padding-0">
@@ -52,7 +64,8 @@
 				<td>{{ $player->vocation }}</td>
 				<td class="col-md-3">
 					<div class="text-center">
-						<a href="" class="btn btn-primary btn-xs">Edit</a>
+						{!! link_to_route('player.edit', 'Edit',
+							[$player->id], ['class' => 'btn btn-primary btn-xs']) !!}
 						<a href="" class="btn btn-danger btn-xs">Delete</a>
 					</div>
 				</td>
