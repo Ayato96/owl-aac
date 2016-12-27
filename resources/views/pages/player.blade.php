@@ -45,7 +45,7 @@
 				</tr>
 				<tr>
 					<td class="col-md-3">Description:</td>
-					<td>{!! $player['description'] !!}</td>
+					<td>{{ $player['description'] }}</td>
 				</tr>
 				<tr>
 					<td class="col-md-3">Account status:</td>
@@ -66,7 +66,41 @@
 		<div class="panel-heading">Deaths</div>
 		<div class="panel-body padding-0">
 			<table class="table table-hover table-bordered table-striped margin-bottom-5">
-				...
+				@foreach ($player->deaths as $death)
+				<tr>
+					<td class="col-md-4">{{ $death->date }}</td>
+					<td>Killed at level {{ $death->level }} by 
+					@foreach ($death->killers as $killer)
+						@foreach ($killer->players as $players)
+						 	@if ($loop->count>1)
+							 	@if ($loop->last) and by
+	        					@else ,
+	    						@endif
+						 	@endif
+						 	{{ link_to_route('player.show', $players->name,
+									[$players->slug], []) 
+							}}
+							{{ $loop->count }}
+						 @endforeach 
+					@endforeach 
+
+					@foreach ($death->killers as $killer)
+						@foreach ($killer->monsters as $monster)
+						 	@if ($loop->parent->count >= 2)
+							 	@if ($loop->parent->iteration > 1)
+								 	@if ($loop->parent->last)
+								 		and by
+								 	@else 
+								 		,
+								 	@endif
+							 	@endif
+						 	@endif
+						 	{{ $monster->name }}
+						@endforeach
+					@endforeach 
+					</td>
+				</tr>
+				@endforeach
 			</table>
 		</div>
 	</div>
@@ -89,7 +123,7 @@
 				
 				<tr>
 					<td class="col-md-3">Created:</td>
-					<td>{{ $playerAccount['created_at'] }}</td>
+					<td>{{ $player->account->created_at }}</td>
 				</tr>
 				<tr>
 					<td class="col-md-3">Vip status:</td>
@@ -111,17 +145,19 @@
 					<th>Status</th>
 					<th>	</th>
 				</tr>
-				@foreach (App\Account::find($playerAccount['id'])->players as $players)
+				{{-- @foreach (App\Account::find($playerAccount['id'])->players as $players) --}}
+				@foreach ($player->account->players as $player)
 				<tr>
 					<td class="col-md-1">{{ $loop->iteration }}.</td>
-					<td>{{ $players->name }}</td>
-					<td>{{ $players->world_id }}</td>
-					<td>{{ $players->online }}</td>
+					<td>{{ $player->name }}</td>
+					<td>{{ $player->world_id }}</td>
+					<td>{{ $player->online }}</td>
 					<td>
 						<div class="text-center">
-							{!! link_to_route('player.show', 'Show',
-							[$players->slug], ['class' => 'btn btn-primary btn-xs']) !!}
-							
+							{!!
+								link_to_route('player.show', 'Show',
+									[$player->slug], ['class' => 'btn btn-primary btn-xs'])
+							!!}
 						</div>
 					</td>
 				</tr>
