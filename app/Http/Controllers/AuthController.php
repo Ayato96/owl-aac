@@ -14,11 +14,6 @@ class AuthController extends Controller
 		$this->auth = $auth;
 		$this->middleware('guest', ['except' => 'logout']);
 	}
-	
-	public function username()
-	{
-		return 'name';
-	}
 
 	public function login()
 	{
