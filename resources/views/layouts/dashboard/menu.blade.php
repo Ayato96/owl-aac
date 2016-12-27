@@ -44,10 +44,10 @@
                     <a href="#"><i class="fa fa-newspaper-o fa-fw"></i> News<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href=" {{-- route('news.create') --}} ">Create</a>
+                            <a href=" {{ route('post.create') }} ">Create</a>
                         </li>
                         <li>
-                            <a href="{{-- route('news.index') --}}">Show</a>
+                            <a href="{{ route('post.index') }}">Show</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->

@@ -69,6 +69,10 @@
                     height: 250,
                 });
             });
+
+            $(document).ready(function(){
+                $('#newsDataTable').DataTable();
+            });
         </script>
     </body>
 

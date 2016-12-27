@@ -15,55 +15,73 @@ use Illuminate\Http\Request;
 
 Route::get('/', function ()
 {
-	return view('pages.index');
+	$posts = \App\Post::all()->reverse();
+	return view('pages.index')->with('posts', $posts);
 })->name('home');
 
+
+Route::group(['prefix' => 'account'], function () {
+ 
 /*
  * #LOGIN
  */
-Route::get('account/login', 'AuthController@login')->name('account.login');
-Route::post('account/login','AuthController@authenticate')->name('account.auth');
-Route::post('account/logout','AuthController@logout')->name('account.logout');
+	Route::get('login', 'AuthController@login')->name('account.login');
+	Route::post('login','AuthController@authenticate')->name('account.auth');
+	Route::post('logout','AuthController@logout')->name('account.logout');
 
 /*
  * #ACCOUNT
  */
-Route::get('account', 'AccountController@index')->name('account.index');
-Route::get('account/create', 'AccountController@create')->name('account.create');
-Route::post('account/create', 'AccountController@store')->name('account.store');
+	Route::get('/', 'AccountController@index')->name('account.index');
+	Route::get('create', 'AccountController@create')->name('account.create');
+	Route::post('create', 'AccountController@store')->name('account.store');
+
+});
 
 /*
  * #PLAYER
  */
-Route::get('account/createcharacter', 'PlayerController@create')->name('player.create');
-Route::post('account/createcharacter', 'PlayerController@store')->name('player.store');
-Route::get('player', 'PlayerController@index')->name('player.index');
-Route::get('player/{slug}', 'PlayerController@show')->name('player.show');
-Route::post('player', function (Request $request)
-{
-	$slug = str_slug($request->name, '-');
-	$player = App\Player::whereSlug($slug)->first();
-	if ($player) {
-		return redirect()->route('player.show', [$slug]);
-	}
-	return redirect()->route('player.index');
-})->name('player.search');
+Route::group(['prefix' => 'player'], function () {
+
+	Route::get('new', 'PlayerController@create')->name('player.create');
+	Route::post('new', 'PlayerController@store')->name('player.store');
+	Route::get('edit/{id}', 'PlayerController@edit')->name('player.edit');
+	Route::post('update/{id}', 'PlayerController@update')->name('player.update');
+	Route::get('/', 'PlayerController@index')->name('player.index');
+	Route::get('/{slug}', 'PlayerController@show')->name('player.show');
+	Route::post('/', function (Request $request)
+	{
+		$slug = str_slug($request->name, '-');
+		$player = App\Player::whereSlug($slug)->first();
+		if ($player) {
+			return redirect()->route('player.show', [$slug]);
+		}
+		return redirect()->route('player.index');
+	})->name('player.search');
+
+});
+
+// Show Post
+Route::get('post/{id}', 'NewsController@show')->name('post.show');
 
 /*
  * #DASHBOARD
  */
-Route::get('dashboard', 'AdminController@index')->name('dashboard');
+Route::group(['prefix' => 'dashboard'], function () {
 
-/*Route::get('dashboard/news', 'NewsController@index')->name('news.index');
-Route::get('dashboard/news/create', 'NewsController@create')->name('news.create');
-Route::post('dashboard/news/create', 'NewsController@store')->name('news.store');
-Route::get('dashboard/news/{id}', 'NewsController@show')->name('news.show');
-Route::get('dashboard/news/edit/{id}', 'NewsController@edit')->name('news.edit');*/
+	Route::get('/', 'AdminController@index')->name('dashboard');
 
+	/*
+	 * #POSTS
+	 */
+	Route::get('posts', 'PostController@index')->name('post.index');
+	Route::get('posts/create', 'PostController@create')->name('post.create');
+	Route::post('posts/create', 'PostController@store')->name('post.store');
+	Route::get('posts/edit/{id}', 'PostController@edit')->name('post.edit');
+	Route::post('posts/update', 'PostController@edit')->name('post.update');
+});
 
 /*
-accountmanagent
-player
 guild
 news
 */
