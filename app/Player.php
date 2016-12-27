@@ -10,7 +10,7 @@ use Thetispro\Setting\Facades\Setting;
 class Player extends Model
 {
 	protected $table = 'players';
-
+	
 	protected $attributes = array(
 		'experience'  => 4200,
 		'conditions' => '',
@@ -43,11 +43,24 @@ class Player extends Model
 	'updated_at',
 	];
 
-	public function user()
+	/*
+	* RELATIONSHIPS
+	*/
+	public function account()
 	{
-		return $this->belongsTo('App\Account','account_id');
+		return $this->belongsTo('App\Account', 'account_id');
 	}
 
+	public function posts()
+	{
+		return $this->hasMany('App\Post');
+	}
+
+	public function deaths()
+	{
+		return $this->hasMany('App\PlayerDeath');
+	}
+	
 	/*
 	* GETS AND SETTERS
 	*/
