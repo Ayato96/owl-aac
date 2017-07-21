@@ -51,17 +51,25 @@
 	<div class="panel-heading">Characters</div>
 	<div class="panel-body padding-0">
 		<table class="table table-hover table-bordered table-striped margin-bottom-5"">
+		@if ($players->isEmpty())
+			<div class="text-center">
+				You don't have characters.
+			</div>
+		@else
 			<tr>
 				<th>	</th>
 				<th>Name</th>
 				<th>Vocation</th>
+				<th>Level</th>
 				<th>	</th>
 			</tr>
+		@endif
 			@foreach ($players as $player)
 			<tr>
 				<td class="col-md-1">{{ $loop->iteration }}.</td>
 				<td>{{ $player->name }}</td>
 				<td>{{ $player->vocation }}</td>
+				<td>{{ $player->level }}</td>
 				<td class="col-md-3">
 					<div class="text-center">
 						{!! link_to_route('player.edit', 'Edit',
