@@ -22,9 +22,9 @@
                 <li class="divider"></li>
                 <li>
                 
-                <a href="{{ route('account.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                <a href="{{ route('auth.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                     <i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                {!! Form::open(['route' => 'account.logout', 'id' => 'logout-form', 'style' => 'display:none;']) !!}
+                {!! Form::open(['route' => 'auth.logout', 'id' => 'logout-form', 'style' => 'display:none;']) !!}
                 {!! Form::close() !!}
                 </li>
             </ul>

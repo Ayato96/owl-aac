@@ -30,7 +30,7 @@ class AccountController extends Controller
 	public function store(CreateAccount $request)
 	{	
 		$this->createAccount($request);
-		return redirect()->route('account.login');
+		return redirect()->route('auth.login');
 	}
 
 	public function createAccount(CreateAccount $request)

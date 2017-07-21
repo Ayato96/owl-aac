@@ -5,7 +5,7 @@
 
 @section('content')
 
-{!! Form::open(['route' => 'account.auth', 'class'=>'form-horizontal', 'id' => 'teste']) !!}
+{!! Form::open(['route' => 'auth.auth', 'class'=>'form-horizontal']) !!}
 
 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
     {!! Form::label('name', 'Account Name:', ['class' => 'col-md-4 control-label']) !!}

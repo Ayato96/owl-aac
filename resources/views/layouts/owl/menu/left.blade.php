@@ -31,10 +31,10 @@
 				<a href="{{ route('account.index') }}">Account Management</a>
 			</div>
 			<div>
-				<a href="{{ route('account.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+				<a href="{{ route('auth.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
 					Logout
 				</a>
-				{!! Form::open(['route' => 'account.logout', 'id' => 'logout-form', 'style' => 'display:none;']) !!}
+				{!! Form::open(['route' => 'auth.logout', 'id' => 'logout-form', 'style' => 'display:none;']) !!}
 				{!! Form::close() !!}
 			</div>
 		</div>
@@ -46,7 +46,7 @@
 {{-- #LOGIN AND REGISTER BUTTONS --}}
 <div class="text-center">
 	<div class="btn-group login-area">
-		<a href="{{ route('account.login') }}" class="btn btn-primary">Login</a> 
+		<a href="{{ route('auth.login') }}" class="btn btn-primary">Login</a> 
 		<a href="{{ route('account.create') }}" class="btn btn-warning">Register</a>
 	</div>
 </div>
