@@ -9,33 +9,45 @@ use App\Player;
 
 class AccountController extends Controller
 {
+    /**
+     * Defines Middleware, who have permission to acess this controller
+     * Only logged in is necessary
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => array('create', 'store')]);
+    }
 
-	public function __construct()
-	{
-		$this->middleware('auth', ['except' => array('create', 'store')]);
-	}
-	
-	public function index()
-	{
-		$players = Account::find(Auth::user()->id)->players;
+    /**
+     * Index of Account Management
+     * @return view resources/views/pages/accountManager.blade.php
+     */
+    public function index()
+    {
+        $players = Account::find(Auth::user()->id)->players;
 
-		return view('pages.accountManager')->with('players', $players);
-	}
+        return view('pages.accountManager')->with('players', $players);
+    }
 
-	public function create()
-	{
-		return view('auth.register');	
-	}
+    /**
+     * page of Create Account
+     * @return view resources/views/pages/accountManager.blade.php
+     */
+    public function create()
+    {
+        return view('auth.register');   
+    }
 
-	public function store(CreateAccount $request)
-	{	
-		$this->createAccount($request);
-		return redirect()->route('auth.login');
-	}
+    /**
+     * Create an Account
+     * @param  CreateAccount          App/Http/Requests/CreateAccount
+     * @param  CreateAccount $request Form data
+     * @return redirect               redirect to route auth.login
+     */
+    public function store(CreateAccount $request)
+    {
+        Account::create($request->only(['name', 'email', 'password']));
+        return redirect()->route('auth.login');
+    }
 
-	public function createAccount(CreateAccount $request)
-	{
-		$data = $request->only(['name', 'email', 'password']);
-		$account = Account::create($data);
-	}
 }
