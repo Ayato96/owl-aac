@@ -20,29 +20,29 @@ Route::get('/', function ()
 })->name('home');
 
 
-Route::group(['prefix' => 'account'], function () {
- 
-/*
- * #LOGIN
+/**
+ * Auth Route Group
  */
-	Route::get('login', 'AuthController@login')->name('account.login');
-	Route::post('login','AuthController@authenticate')->name('account.auth');
-	Route::post('logout','AuthController@logout')->name('account.logout');
+Route::group(['prefix' => 'auth'], function () {
+	Route::get('login', 'AuthController@login')->name('auth.login');
+	Route::post('login','AuthController@authenticate')->name('auth.auth');
+	Route::post('logout','AuthController@logout')->name('auth.logout');
+});
 
-/*
- * #ACCOUNT
+/**
+ * Account Route Group
  */
+Route::group(['prefix' => 'account'], function () {
 	Route::get('/', 'AccountController@index')->name('account.index');
 	Route::get('create', 'AccountController@create')->name('account.create');
 	Route::post('create', 'AccountController@store')->name('account.store');
 
 });
 
-/*
- * #PLAYER
+/**
+ * Player Route Group
  */
 Route::group(['prefix' => 'player'], function () {
-
 	Route::get('new', 'PlayerController@create')->name('player.create');
 	Route::post('new', 'PlayerController@store')->name('player.store');
 	Route::get('edit/{id}', 'PlayerController@edit')->name('player.edit');
@@ -61,24 +61,28 @@ Route::group(['prefix' => 'player'], function () {
 
 });
 
-// Show Post
+/**
+ * Post Route Group
+ */
 Route::get('post/{id}', 'NewsController@show')->name('post.show');
 
-/*
- * #DASHBOARD
+/**
+ * DashBoard Route Group
  */
 Route::group(['prefix' => 'dashboard'], function () {
 
 	Route::get('/', 'AdminController@index')->name('dashboard');
 
-	/*
-	 * #POSTS
+	/**
+	 * DashBoard Post Route Group
 	 */
-	Route::get('posts', 'PostController@index')->name('post.index');
-	Route::get('posts/create', 'PostController@create')->name('post.create');
-	Route::post('posts/create', 'PostController@store')->name('post.store');
-	Route::get('posts/edit/{id}', 'PostController@edit')->name('post.edit');
-	Route::post('posts/update', 'PostController@edit')->name('post.update');
+	Route::group(['prefix' => 'posts'], function() {
+		Route::get('/', 'PostController@index')->name('post.index');
+		Route::get('create', 'PostController@create')->name('post.create');
+		Route::post('create', 'PostController@store')->name('post.store');
+		Route::get('edit/{id}', 'PostController@edit')->name('post.edit');
+		Route::post('update', 'PostController@edit')->name('post.update');
+	});
 });
 
 /*
