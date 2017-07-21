@@ -23,7 +23,7 @@ class PlayerController extends Controller
 
 	public function create()
 	{
-		return view('pages.createcharacter');
+		return view('pages.createCharacter');
 	}
 
 	public function store(CreatePlayer $request)
