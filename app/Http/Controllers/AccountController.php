@@ -24,7 +24,7 @@ class AccountController extends Controller
      */
     public function index()
     {
-        $players = Account::find(Auth::user()->id)->players;
+        $players = Auth::user()->players;
 
         return view('pages.accountManager')->with('players', $players);
     }
