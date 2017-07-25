@@ -41,7 +41,7 @@
 			</tr>
 		</table>
 		<div class="text-center margin-bottom-5">
-			<a href="account/change/password" class="btn btn-primary btn-sm">Change Password</a>
+			<a href="{{ route('account.change.password') }}" class="btn btn-primary btn-sm">Change Password</a>
 			<a href="account/change/email" class="btn btn-primary btn-sm">Change Email</a>
 		</div>
 	</div>

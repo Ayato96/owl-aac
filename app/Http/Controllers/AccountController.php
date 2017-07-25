@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Hash;
 use App\Http\Requests\CreateAccount;
+use App\Http\Requests\ChangePassword;
 use App\Account;
 use App\Player;
 
@@ -48,6 +50,25 @@ class AccountController extends Controller
     {
         Account::create($request->only(['name', 'email', 'password']));
         return redirect()->route('auth.login');
+    }
+
+    /**
+     * page of Change Password
+     * @return view resources/views/pages/account/changePassword.blade.php
+     */
+    public function changePassword()
+    {
+        return view('pages.account.changePassword');
+    }
+
+    public function updatePassword(ChangePassword $request)
+    {
+        if(Hash::check($request->current_password, Auth::User()->password)) {            
+            Auth::user()->update(['password' => $request->new_password]);
+            return redirect()->route('account.index')->with('status', 'Password changed!');
+        } else {
+            return redirect()->back()->withErrors(array('current_password' => 'Invalid Password.'))->withInput();
+        }
     }
 
 }

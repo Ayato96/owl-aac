@@ -36,7 +36,8 @@ Route::group(['prefix' => 'account'], function () {
 	Route::get('/', 'AccountController@index')->name('account.index');
 	Route::get('create', 'AccountController@create')->name('account.create');
 	Route::post('create', 'AccountController@store')->name('account.store');
-
+	Route::get('update/password', 'AccountController@changePassword')->name('account.change.password');
+	Route::post('update/password', 'AccountController@updatePassword')->name('account.update.password');
 });
 
 /**

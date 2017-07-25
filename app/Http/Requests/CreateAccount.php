@@ -37,7 +37,7 @@ class CreateAccount extends FormRequest
         return [
         'name' => 'required|min:7|max:32|alpha_num|unique:accounts',
         'email' => 'required|email|unique:accounts',
-        'password' => 'required|confirmed|min:7|alpha_dash',
+        'password' => 'required|confirmed|min:7|max:32|alpha_dash',
         'password_confirmation' => 'required',
         ];
     }
