@@ -126,7 +126,7 @@ class Player extends Model
 	//slug character name
 	public function setNameAttribute($value)
 	{
-		$this->attributes['name'] = ucwords($value);
+		$this->attributes['name'] = ucwords(strtolower($value));
 		$this->attributes['slug'] = str_slug($value, '-');
 	}
 	
