@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Hash;
+use Auth;
 
 class Account extends Authenticatable
 {
@@ -40,6 +41,11 @@ class Account extends Authenticatable
     public function players()
     {
         return $this->hasMany('App\Player');
+    }
+
+    public static function loggedin()
+    {
+        return Auth::user();
     }
 
 }

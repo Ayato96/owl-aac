@@ -26,8 +26,7 @@ class AccountController extends Controller
      */
     public function index()
     {
-        $players = Auth::user()->players;
-
+        $players = Account::loggedin()->players;
         return view('pages.accountManager')->with('players', $players);
     }
 
@@ -63,7 +62,7 @@ class AccountController extends Controller
 
     public function updatePassword(ChangePassword $request)
     {          
-        Auth::user()->update(['password' => $request->new_password]);
+        Account::loggedin()->update(['password' => $request->new_password]);
         return redirect()->route('account.index')->with('status', 'Password changed!');
     }
 
