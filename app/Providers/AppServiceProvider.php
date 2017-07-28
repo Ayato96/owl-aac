@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Exception;
 use Thetispro\Setting\Facades\Setting;
+use Hash;
+use Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,8 +22,7 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('layouts.owl.app', function($view) {
             $playerRank = DB::table('players')
             ->where([
-                ['group_id',1],
-                ['account_id','>',1]
+                ['group_id','<',4],
                 ])
             ->orderBy('level','desc')
             ->limit(5)
@@ -30,8 +31,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
 
-        /*
-         *  #VALIDATIONS
+       /**
+        * Validations for player create
         */
         Validator::extend('not_contains', function($attribute, $value, $parameters)
         {
@@ -72,7 +73,26 @@ class AppServiceProvider extends ServiceProvider
             }
 
             return true;
-            });
+        });
+
+        /**
+        * Validations for password change
+        */
+        Validator::extend('old_password_check', function($attribute, $value, $parameters)
+        {
+            if(!Hash::check($value, Auth::User()->password)) {            
+                return false;
+            }
+            return true;
+        });
+
+        Validator::extend('new_password_check', function($attribute, $value, $parameters)
+        {
+            if(Hash::check($value, Auth::User()->password)) {            
+                return false;
+            }
+            return true;
+        });
     }
 
     /**

@@ -62,13 +62,9 @@ class AccountController extends Controller
     }
 
     public function updatePassword(ChangePassword $request)
-    {
-        if(Hash::check($request->current_password, Auth::User()->password)) {            
-            Auth::user()->update(['password' => $request->new_password]);
-            return redirect()->route('account.index')->with('status', 'Password changed!');
-        } else {
-            return redirect()->back()->withErrors(array('current_password' => 'Invalid Password.'))->withInput();
-        }
+    {          
+        Auth::user()->update(['password' => $request->new_password]);
+        return redirect()->route('account.index')->with('status', 'Password changed!');
     }
 
 }
