@@ -68,36 +68,8 @@
 			<table class="table table-hover table-bordered table-striped margin-bottom-5">
 				@foreach ($player->deaths as $death)
 				<tr>
-					<td class="col-md-4">{{ $death->date }}</td>
-					<td>Killed at level {{ $death->level }} by 
-					@foreach ($death->killers as $killer)
-						@foreach ($killer->players as $players)
-						 	@if ($loop->count>1)
-							 	@if ($loop->last) and by
-	        					@else ,
-	    						@endif
-						 	@endif
-						 	{{ link_to_route('player.show', $players->name,
-									[$players->slug], []) 
-							}}
-							{{ $loop->count }}
-						 @endforeach 
-					@endforeach 
-
-					@foreach ($death->killers as $killer)
-						@foreach ($killer->monsters as $monster)
-						 	@if ($loop->parent->count >= 2)
-							 	@if ($loop->parent->iteration > 1)
-								 	@if ($loop->parent->last)
-								 		and by
-								 	@else 
-								 		,
-								 	@endif
-							 	@endif
-						 	@endif
-						 	{{ $monster->name }}
-						@endforeach
-					@endforeach 
+					<td class="col-md-4">{{ $death->time }}</td>
+					<td>Killed at level {{ $death->level }} by {{ $death->killed_by }}
 					</td>
 				</tr>
 				@endforeach
