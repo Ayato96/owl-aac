@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\CreatePlayer;
 use App\Http\Requests\EditPlayer;
 use App\Account;
 use App\Player;
-use Auth;
 
 class PlayerController extends Controller
 {
@@ -28,25 +28,17 @@ class PlayerController extends Controller
 
 	public function store(CreatePlayer $request)
 	{
-		$this->createPlayer($request);
+		$data = $request->only(['name', 'vocation', 'sex', 'town_id']); 
+        Account::loggedin()->players()->create($data);
 		return redirect('account');
 	}
 
-	public function createPlayer(CreatePlayer $request)
+	public function show($name)
 	{
-		$data = $request->only(['name', 'vocation', 'sex', 'town_id']); 
-
-		$account = Account::find(Auth::id());
-		
-		$player = $account->players()->create($data);
-	}
-
-	public function show($slug)
-	{
-		$player = Player::whereSlug($slug)->first();
+		$player = Player::whereName($name)->first();
 		if ($player) 
 		{
-			$playerAccount = Player::whereSlug($slug)->first()->account->toArray();
+			$playerAccount = $player->account->toArray();
 			return view('pages.player')->with([
 				'player' => $player, 
 				'playerAccount' => $playerAccount 
@@ -54,6 +46,16 @@ class PlayerController extends Controller
 		}
 		return redirect()->route('player.index');
 	}
+
+    public function search(Request $request)
+    {   
+        $name = ucwords(strtolower($request->name));
+        $player = Player::whereName($name)->first();
+        if ($player) {
+            return redirect()->route('player.show', [$player->name]);
+        }
+        return redirect()->route('player.index');
+    }
 
 	public function edit($id)
 	{	

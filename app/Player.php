@@ -26,21 +26,22 @@ class Player extends Model
 		);
 
 	protected $fillable = [
-	'name', 'account_id', 'vocation', 'sex', 'town_id'
+		'name', 'account_id', 'vocation', 'sex', 'town_id'
 	];
 
 	protected $guarded = [
-	'world_id', 'group_id', 'level', 'health', 'healthmax', 'experience', 'lookbody', 'lookfeet', 'lookhead',
-	'looklegs', 'looktype', 'lookaddons', 'lookmount', 'maglevel', 'mana', 'manamax', 'manaspent', 'soul', 
-	'posx', 'posy', 'posz', 'conditions', 'cap', 'lastlogin', '	lastip', 'save', 'skull', 'skulltime', 'rank_id',
-	'guildnick', 'lastlogout', 'blessings', 'pvp_blessing', 'balance', 'stamina', 'direction', 'loss_experience', 
-	'loss_mana', 'loss_skills', 'loss_containers', 'loss_items', 'premend', 'online', '	marriage', 'promotion', 
-	'deleted', 'description', 
+		'world_id', 'group_id', 'level', 'health', 'healthmax', 'experience', 'lookbody', 'lookfeet',
+		'lookhead', 'looklegs', 'looktype', 'lookaddons', 'lookmount', 'maglevel', 'mana', 'manamax',
+		'manaspent', 'soul', 'posx', 'posy', 'posz', 'conditions', 'cap', 'lastlogin', 'lastip', 'save',
+		'skull', 'skulltime', 'rank_id', 'guildnick', 'lastlogout', 'blessings', 'pvp_blessing',
+		'balance', 'stamina', 'direction', 'loss_experience', 'loss_mana', 'loss_skills',
+		'loss_containers', 'loss_items', 'premend', 'online', '	marriage', 'promotion', 'deleted',
+		'description', 
 	];
 
 	protected $dates = [
-	'created_at',
-	'updated_at',
+		'created_at',
+		'updated_at',
 	];
 
 	/*
@@ -127,7 +128,6 @@ class Player extends Model
 	public function setNameAttribute($value)
 	{
 		$this->attributes['name'] = ucwords(strtolower($value));
-		$this->attributes['slug'] = str_slug($value, '-');
 	}
 	
 }
