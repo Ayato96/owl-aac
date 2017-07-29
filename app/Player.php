@@ -118,7 +118,7 @@ class Player extends Model
 		}
 		else
 		{
-			return Carbon::createFromTimestamp($value)->toDateTimeString();
+			return Carbon::createFromTimestamp($value)->diffForHumans();
 		}
 		
 	}
