@@ -49,17 +49,8 @@ Route::group(['prefix' => 'player'], function () {
 	Route::get('edit/{id}', 'PlayerController@edit')->name('player.edit');
 	Route::post('update/{id}', 'PlayerController@update')->name('player.update');
 	Route::get('/', 'PlayerController@index')->name('player.index');
-	Route::get('/{slug}', 'PlayerController@show')->name('player.show');
-	Route::post('/', function (Request $request)
-	{
-		$slug = str_slug($request->name, '-');
-		$player = App\Player::whereSlug($slug)->first();
-		if ($player) {
-			return redirect()->route('player.show', [$slug]);
-		}
-		return redirect()->route('player.index');
-	})->name('player.search');
-
+	Route::get('/{name}', 'PlayerController@show')->name('player.show');
+	Route::post('/', 'PlayerController@search')->name('player.search');
 });
 
 /**
