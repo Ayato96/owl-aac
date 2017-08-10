@@ -69,7 +69,11 @@
 				@foreach ($player->deaths as $death)
 				<tr>
 					<td class="col-md-4">{{ $death->time }}</td>
-					<td>Killed at level {{ $death->level }} by {{ $death->killed_by }}
+					<td>
+						Killed at level {{ $death->level }} by {!! $death->killed_by !!} 
+						@if ($death->killed_by != $death->mostdamage_by)
+							and {!! $death->mostdamage_by !!}
+						@endif
 					</td>
 				</tr>
 				@endforeach

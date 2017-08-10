@@ -24,4 +24,19 @@ class PlayerDeath extends Model
 		return Carbon::createFromTimestamp($value)->toDateTimeString();
 	}
 
+    public function getKilledByAttribute($value)
+    {
+        if ($this->attributes['is_player']) {
+            return '<a href="'.$value.'">'.$value.'</a>';
+        }
+        return $value;
+    }
+
+    public function getMostdamageByAttribute($value)
+    {
+        if ($this->attributes['mostdamage_is_player']) {
+            return '<a href="'.$value.'">'.$value.'</a>';
+        }
+        return $value;
+    }
 }
