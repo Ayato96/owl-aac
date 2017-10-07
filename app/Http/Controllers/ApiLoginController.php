@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\ConfigLuaController as ConfigLua;
 use Carbon\Carbon;
 use App\Account;
 
@@ -22,20 +23,14 @@ class ApiLoginController extends Controller
     {
         /**
          * VARIABLES
-         * TODO: make an function to retrieve config.lua variables
          */
+        $configLua = (new ConfigLua)->getAll();
         $lastLogin=0;
-        $ports = array(
-            'game' => 7172,
-            'cast' => 7173 // for future use 
-        );
         
         /**
          * GET CONTENT OF GAME FORM
          */
         $requestJson = json_decode($request->getContent(), true);
-        /*$requestJson['accountname'] = '123123'; // testing var
-        $requestJson['password'] = '123123'; // testing var */
 
         /**
          * SELECT ACCOUNT 
@@ -73,13 +68,13 @@ class ApiLoginController extends Controller
 
         /**
          * FILL THE ARRAY FOR JSON RESPONSE
-         * TODO: improve config.lua variables, free premium
+         * TODO: ispremium and premiumuntil: premium or vip?
          */
         $data = array(
             'session' => array(
                 "sessionkey" => $requestJson['accountname'] . "\n" . $requestJson['password'],
                 "lastlogintime" => $lastLogin,
-            "ispremium" => ($account->premdays > 0 ? true : false),
+            "ispremium" => ($configLua['freePremium'] ? true : ($account->premdays > 0 ? true : false)),
             "premiumuntil" => Carbon::now()->addDays($account->premdays)->timestamp,
             "status" => "active"
         ),
@@ -87,13 +82,13 @@ class ApiLoginController extends Controller
                 'worlds' => array(
                     0 => array(
                         "id" => 0,
-                        "name" => "OTXServer-Global",
-                        "externaladdress" => "192.168.2.100",
-                        "externalport" => $ports['game'],
+                        "name" => $configLua['serverName'],
+                        "externaladdress" => $configLua['ip'],
+                        "externalport" => $configLua['gameProtocolPort'],
                         "previewstate" => 0,
                         "location" => "BRA",
-                        "externaladdressunprotected" => "192.168.2.100",
-                        "externaladdressprotected" => "192.168.2.100"
+                        "externaladdressunprotected" => $configLua['ip'],
+                        "externaladdressprotected" => $configLua['ip']
                     ), 
                 ),
                 'characters' => $characters,

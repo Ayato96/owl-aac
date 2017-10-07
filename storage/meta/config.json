@@ -1,7 +1,7 @@
 {
 	"Server": {
 		"Name": "Owl",
-		"dir": "C:/xampp/htdocs/unibaiak/config/serverfiles",
+		"dir": "/home/ivenspontes/otx/1147/",
 		"Vocations": [
 			{
 				"id": "0",
