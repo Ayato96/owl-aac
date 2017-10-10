@@ -75,6 +75,14 @@ Route::group(['prefix' => 'dashboard'], function () {
 		Route::get('edit/{id}', 'PostController@edit')->name('post.edit');
 		Route::post('update', 'PostController@edit')->name('post.update');
 	});
+
+	/**
+	 * DashBoard Configurations Route Group
+	 */
+	Route::group(['prefix' => 'config'], function() {
+		Route::get('/', 'ConfigController@index')->name('config.index');
+		Route::post('set', 'ConfigController@set')->name('config.set');
+	});
 });
 
 /*
