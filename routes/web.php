@@ -85,7 +85,15 @@ Route::group(['prefix' => 'dashboard'], function () {
 	});
 });
 
+/**
+ * Guild Route Group
+ */
+Route::group(['prefix' => 'guilds'], function() {
+		Route::get('/', 'GuildController@index')->name('guild.index');
+		Route::get('/{id}', 'GuildController@show')->name('guild.show');
+});
+
 /*
-guild
+guild - working in
 news
 */

@@ -89,7 +89,7 @@
 						<a href="{{ route('player.index') }}">Characters</a>
 					</div>
 					<div>
-						<a href="">Guilds</a>
+						<a href="{{ route('guild.index') }}">Guilds</a>
 					</div>
 				</div>
 			</div>
