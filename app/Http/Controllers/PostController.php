@@ -28,13 +28,14 @@ class PostController extends Controller
     }
 
     public function store(Request $request)
-    { 
+    {
 		$post = Post::create($request->only(['title', 'content', 'player_id']));
+        return redirect()->back();
     }
 
     public function show($id)
     {
-    	
+        //
     }
 
     public function edit($id)
@@ -48,6 +49,6 @@ class PostController extends Controller
 
     public function delete($id)
     {
-    	
+        //
     }
 }
