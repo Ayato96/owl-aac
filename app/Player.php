@@ -52,6 +52,16 @@ class Player extends Model
 		return $this->belongsTo('App\Account', 'account_id');
 	}
 
+	public function membership()
+    {
+       return $this->hasOne('App\GuildMembership');
+    }
+
+    public function rank()
+    {
+       return $this->belongsToMany('App\GuildRank', 'guild_membership', 'player_id', 'rank_id');
+    }
+
 	public function posts()
 	{
 		return $this->hasMany('App\Post');
@@ -112,7 +122,7 @@ class Player extends Model
 		}
 	}
 
-	public function getLastloginAttribute($value)
+/*	public function getLastloginAttribute($value)
 	{
 		if ($value==0) {
 			return 'Never loggedin';	
@@ -122,12 +132,13 @@ class Player extends Model
 			return Carbon::createFromTimestamp($value)->diffForHumans();
 		}
 		
-	}
+	}*/
 
 	//slug character name
 	public function setNameAttribute($value)
 	{
 		$this->attributes['name'] = ucwords(strtolower($value));
 	}
+
 	
 }

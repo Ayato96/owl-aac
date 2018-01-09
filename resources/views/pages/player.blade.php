@@ -1,7 +1,7 @@
 @extends('layouts.owl.app')
 
-@section('title', 'Player')
-@section('header', 'Player')
+@section('title', $player['name'])
+@section('header', $player['name'])
 
 @section('content')
 <div class="col-md-12">
@@ -28,9 +28,13 @@
 					<td>{{ $player['level'] }}</td>
 				</tr>
 				<tr>
+					<td class="col-md-3">Guild:</td>
+					<td>{{ $player->membership[0]['name'] }}</td>
+				</tr>
+{{-- 				<tr>
 					<td class="col-md-3">World:</td>
 					<td>{{ $player['world_id'] }}</td>
-				</tr>
+				</tr> --}}
 				<tr>
 					<td class="col-md-3">Residence:</td>
 					<td>{{ $player['town_id'] }}</td>
@@ -41,12 +45,14 @@
 				</tr>
 				<tr>
 					<td class="col-md-3">Last login:</td>
-					<td>{{ $player['lastlogin'] }}</td>
+					<td>{{ Carbon\Carbon::createFromTimestamp($player['lastlogin'])->diffForHumans() }}</td>
 				</tr>
-				<tr>
-					<td class="col-md-3">Description:</td>
-					<td>{{ $player['description'] }}</td>
-				</tr>
+				@if ($player['description'])
+					<tr>
+						<td class="col-md-3">Description:</td>
+						<td>{{ $player['description'] }}</td>
+					</tr>
+				@endif
 				<tr>
 					<td class="col-md-3">Account status:</td>
 					<td>
