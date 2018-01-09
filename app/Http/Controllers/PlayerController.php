@@ -28,7 +28,7 @@ class PlayerController extends Controller
 
 	public function store(CreatePlayer $request)
 	{
-		$data = $request->only(['name', 'vocation', 'sex', 'town_id']); 
+		$data = $request->only(['name', 'vocation', 'sex', 'town_id']);
         Account::loggedin()->players()->create($data);
 		return redirect('account');
 	}
@@ -36,19 +36,17 @@ class PlayerController extends Controller
 	public function show($name)
 	{
 		$player = Player::whereName($name)->first();
-		if ($player) 
+		if ($player)
 		{
-			$playerAccount = $player->account->toArray();
 			return view('pages.player')->with([
-				'player' => $player, 
-				'playerAccount' => $playerAccount 
+				'player' => $player,
 				]);
 		}
 		return redirect()->route('player.index');
 	}
 
     public function search(Request $request)
-    {   
+    {
         $name = ucwords(strtolower($request->name));
         $player = Player::whereName($name)->first();
         if ($player) {
@@ -58,14 +56,14 @@ class PlayerController extends Controller
     }
 
 	public function edit($id)
-	{	
+	{
         $player = Player::find($id);
 
         $this->authorize('update', $player);
 
-        if (!$player) 
+        if (!$player)
         {
-			return redirect()->route('account.index')->with('error', 'Player not exist');	
+			return redirect()->route('account.index')->with('error', 'Player not exist');
 		}
 
 		return view('pages.players.edit')->with(compact('player'));

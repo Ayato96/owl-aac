@@ -10,7 +10,7 @@ use Thetispro\Setting\Facades\Setting;
 class Player extends Model
 {
 	protected $table = 'players';
-	
+
 	protected $attributes = array(
 		'experience'  => 4200,
 		'conditions' => '',
@@ -36,7 +36,7 @@ class Player extends Model
 		'skull', 'skulltime', 'rank_id', 'guildnick', 'lastlogout', 'blessings', 'pvp_blessing',
 		'balance', 'stamina', 'direction', 'loss_experience', 'loss_mana', 'loss_skills',
 		'loss_containers', 'loss_items', 'premend', 'online', '	marriage', 'promotion', 'deleted',
-		'description', 
+		'description',
 	];
 
 	protected $dates = [
@@ -71,7 +71,7 @@ class Player extends Model
 	{
 		return $this->hasMany('App\PlayerDeath');
 	}
-	
+
 	/*
 	* GETS AND SETTERS
 	*/
@@ -84,7 +84,7 @@ class Player extends Model
 		}
 		else
 		{
-			return 'Online';	
+			return 'Online';
 		}
 	}
 
@@ -114,31 +114,42 @@ class Player extends Model
 		}
 	}
 
-	public function getTownIdAttribute($value)
+	public function getLastloginAttribute($value)
+	{
+		if ($value==0) {
+			return 'Never loggedin';
+		}
+		else {
+			return Carbon::createFromTimestamp($value)->diffForHumans();
+		}
+
+	}
+
+	public function getTown()
 	{
 		foreach(Setting::get('Server.Towns') as $town)
 		{
-			if ($value == $town['id']) return $town['name'];
+			if ($this->attributes['town_id'] == $town['id']) return $town['name'];
 		}
 	}
 
-/*	public function getLastloginAttribute($value)
+	public function getPlayerList(){
+		return $this->account->players;
+	}
+
+	public function getPremiumStatus(){
+
+		return ($this->account->premdays > 0 ? 'Premium Account' : 'Free Account');
+	}
+
+	public function getGuild()
 	{
-		if ($value==0) {
-			return 'Never loggedin';	
-		}
-		else
-		{
-			return Carbon::createFromTimestamp($value)->diffForHumans();
-		}
-		
-	}*/
+		return $this->membership->guild->name;
+	}
 
 	//slug character name
 	public function setNameAttribute($value)
 	{
 		$this->attributes['name'] = ucwords(strtolower($value));
 	}
-
-	
 }
