@@ -183,7 +183,9 @@ return [
          */
         Thetispro\Setting\SettingServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-
+        Laracasts\Flash\FlashServiceProvider::class,
+        Facuz\Theme\ThemeServiceProvider::class,
+        Proengsoft\JsValidation\JsValidationServiceProvider::class,
         ],
 
     /*
@@ -237,6 +239,8 @@ return [
     'Setting' => Thetispro\Setting\Facades\Setting::class,
     'Form' => Collective\Html\FormFacade::class,
     'Html' => Collective\Html\HtmlFacade::class,
+    'Theme' => Facuz\Theme\Facades\Theme::class,
+    'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
     ],
 
     ];
