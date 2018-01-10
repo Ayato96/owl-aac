@@ -25,7 +25,7 @@
         "laravelcollective/html": "^5.3.0",
         "laracasts/flash": "^3.0",
         "proengsoft/laravel-jsvalidation": "^2.0",
-        "facuz/laravel-themes": "^3.0"
+        "igaster/laravel-theme": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
