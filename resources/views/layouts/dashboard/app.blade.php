@@ -33,7 +33,7 @@
             <div id="page-wrapper">
 
                 <div class="container-fluid">
-
+                    @include('flash::message')
                     <!-- Page Heading -->
                     <div class="row">
                         <div class="col-lg-12">
@@ -73,6 +73,9 @@
             $(document).ready(function(){
                 $('#newsDataTable').DataTable();
             });
+        </script>
+        <script>
+            $('#flash-overlay-modal').modal();
         </script>
     </body>
 

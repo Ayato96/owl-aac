@@ -34,7 +34,6 @@ class ChangePassword extends FormRequest
         return [
         'current_password' => 'required|old_password_check',
         'new_password' => 'required|confirmed|min:7|max:32|alpha_dash|new_password_check',
-        'new_password_confirmation' => 'required',
         ];
     }
 }

@@ -9,11 +9,15 @@ use App\Http\Requests\ChangePassword;
 use App\Account;
 use App\Player;
 
+/**
+ * Class AccountController
+ * @package App\Http\Controllers
+ */
 class AccountController extends Controller
 {
+
     /**
-     * Defines Middleware, who have permission to acess this controller
-     * Only logged in is necessary
+     * AccountController constructor.
      */
     public function __construct()
     {
@@ -21,49 +25,50 @@ class AccountController extends Controller
     }
 
     /**
-     * Index of Account Management
-     * @return view resources/views/pages/accountManager.blade.php
+     * @return \Illuminate\View\View $players
      */
     public function index()
     {
         $players = Account::loggedin()->players;
-        return view('pages.accountManager')->with('players', $players);
+        return view('pages.account.index')->with('players', $players);
     }
 
     /**
-     * page of Create Account
-     * @return view resources/views/pages/accountManager.blade.php
+     * @return \Illuminate\View\View
      */
     public function create()
     {
-        return view('auth.register');   
+        return view('pages.account.create');
     }
 
     /**
-     * Create an Account
-     * @param  CreateAccount          App/Http/Requests/CreateAccount
-     * @param  CreateAccount $request Form data
-     * @return redirect               redirect to route auth.login
+     * @param CreateAccount $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(CreateAccount $request)
     {
         Account::create($request->only(['name', 'email', 'password']));
+        flash('Account created successfully.')->success();
         return redirect()->route('auth.login');
     }
 
     /**
-     * page of Change Password
-     * @return view resources/views/pages/account/changePassword.blade.php
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function changePassword()
     {
-        return view('pages.account.changePassword');
+        return view('pages.account.password.edit');
     }
 
+    /**
+     * @param ChangePassword $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function updatePassword(ChangePassword $request)
-    {          
+    {
         Account::loggedin()->update(['password' => $request->new_password]);
-        return redirect()->route('account.index')->with('status', 'Password changed!');
+        flash('Password changed.')->success();
+        return redirect()->route('account.index');
     }
 
 }
