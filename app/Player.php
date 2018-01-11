@@ -3,12 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
 
 use Thetispro\Setting\Facades\Setting;
 
 class Player extends Model
 {
+	use SoftDeletes;
+
 	protected $table = 'players';
 
 	protected $attributes = array(
@@ -42,6 +45,7 @@ class Player extends Model
 	protected $dates = [
 		'created_at',
 		'updated_at',
+		'deleted_at',
 	];
 
 	/*

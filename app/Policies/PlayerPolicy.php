@@ -54,6 +54,6 @@ class PlayerPolicy
      */
     public function delete(Account $account, Player $player)
     {
-        //
+        return $account->id === $player->account_id;
     }
 }

@@ -62,7 +62,8 @@
 					<div class="text-center">
 						{!! link_to_route('player.edit', 'Edit',
 							[$player->id], ['class' => 'btn btn-primary btn-xs']) !!}
-						<a href="" class="btn btn-danger btn-xs">Delete</a>
+						{!! link_to_route('player.delete', 'delete',
+							[$player->id], ['class' => 'btn btn-danger btn-xs']) !!}
 					</div>
 				</td>
 			</tr>

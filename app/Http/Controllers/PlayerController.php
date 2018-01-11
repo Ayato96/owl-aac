@@ -93,7 +93,7 @@ class PlayerController extends Controller
      */
     public function edit($id)
     {
-        $player = (new Player)->find($id);
+        $player = Player::find($id);
         if (!$player) {
             flash('Player not exist.')->error();
             return redirect()->route('account.index');
@@ -122,7 +122,15 @@ class PlayerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $player = Player::find($id);
+        if (!$player) {
+            flash('Player not exist.')->error();
+            return redirect()->route('account.index');
+        }
+        $this->authorize('delete', $player);
+        $player->delete();
+        flash('Character deleted.')->success()->important();
+        return redirect()->back();
     }
 
 }

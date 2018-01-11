@@ -43,13 +43,14 @@ Route::group(['prefix' => 'account'], function () {
  * Player Route Group
  */
 Route::group(['prefix' => 'player'], function () {
-    Route::get('new', 'PlayerController@create')->name('player.create');
-    Route::post('new', 'PlayerController@store')->name('player.store');
+    Route::get('/', 'PlayerController@index')->name('player.index');
+    Route::get('create', 'PlayerController@create')->name('player.create');
+    Route::post('create', 'PlayerController@store')->name('player.store');
     Route::get('edit/{id}', 'PlayerController@edit')->name('player.edit');
     Route::post('update/{id}', 'PlayerController@update')->name('player.update');
-    Route::get('/', 'PlayerController@index')->name('player.index');
-    Route::get('/{name}', 'PlayerController@show')->name('player.show');
+    Route::get('delete/{id}', 'PlayerController@destroy')->name('player.delete');
     Route::post('/', 'PlayerController@search')->name('player.search');
+    Route::get('/{name}', 'PlayerController@show')->name('player.show');
 });
 
 /**
