@@ -35,6 +35,12 @@ class PlayerController extends Controller
      */
     public function create()
     {
+        if (Account::loggedin()->players->count()>5) {
+            flash("You've already reached the limit of character creation.")
+                ->error()
+                ->important();
+            return redirect()->back();
+        }
         return view('pages.players.create');
     }
 
