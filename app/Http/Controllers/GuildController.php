@@ -27,7 +27,6 @@ class GuildController extends Controller
     public function index()
     {
         $guilds = Guild::all();
-        echo $guilds;
         if ($guilds->isEmpty()) {
             flash('There are no guilds yet.')->error();
         }

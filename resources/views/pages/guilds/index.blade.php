@@ -1,7 +1,7 @@
 @extends('layouts.owl.app')
 
-@section('title', 'Guilds List')
-@section('header', 'Guilds List')
+@section('title', 'Guild List')
+@section('header', 'Guild List')
 
 @section('content')
     @foreach ($guilds as $guild)
