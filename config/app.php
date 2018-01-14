@@ -185,7 +185,6 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Proengsoft\JsValidation\JsValidationServiceProvider::class,
-        Igaster\LaravelTheme\themeServiceProvider::class,
     ],
 
     /*
@@ -240,7 +239,6 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
-        'Theme' => Igaster\LaravelTheme\Facades\Theme::class,
     ],
 
 ];
