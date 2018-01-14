@@ -6,6 +6,10 @@ use App\Account;
 use App\Player;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
+/**
+ * Class PlayerPolicy
+ * @package App\Policies
+ */
 class PlayerPolicy
 {
     use HandlesAuthorization;
@@ -13,8 +17,8 @@ class PlayerPolicy
     /**
      * Determine whether the Account can view the player.
      *
-     * @param  \App\Account  $Account
-     * @param  \App\Player  $player
+     * @param Account $account
+     * @param  Player $player
      * @return mixed
      */
     public function view(Account $account, Player $player)
@@ -25,7 +29,7 @@ class PlayerPolicy
     /**
      * Determine whether the Account can create players.
      *
-     * @param  \App\Account  $Account
+     * @param Account $account
      * @return mixed
      */
     public function create(Account $account)
@@ -36,8 +40,8 @@ class PlayerPolicy
     /**
      * Determine whether the Account can update the player.
      *
-     * @param  \App\Account  $Account
-     * @param  \App\Player  $player
+     * @param Account $account
+     * @param  Player $player
      * @return mixed
      */
     public function update(Account $account, Player $player)
@@ -48,8 +52,8 @@ class PlayerPolicy
     /**
      * Determine whether the Account can delete the player.
      *
-     * @param  \App\Account  $Account
-     * @param  \App\Player  $player
+     * @param Account $account
+     * @param  Player $player
      * @return mixed
      */
     public function delete(Account $account, Player $player)
