@@ -35,7 +35,7 @@ class PlayerController extends Controller
      */
     public function create()
     {
-        if (Account::loggedin()->players->count()>5) {
+        if (Account::loggedin()->players->count() >= env('OWL_MAX_ACCOUNT_PLAYERS')) {
             flash("You've already reached the limit of character creation.")
                 ->error()
                 ->important();
@@ -119,6 +119,8 @@ class PlayerController extends Controller
      *
      * @param  int $id
      * @return \Illuminate\Http\Response
+     * @throws \Exception
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy($id)
     {
