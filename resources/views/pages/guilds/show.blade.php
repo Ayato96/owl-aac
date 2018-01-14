@@ -19,7 +19,7 @@
     <div class="panel panel-primary">
         <div class="panel-heading">Members</div>
         <div class="panel-body">
-            <table class="table table-hover table-bordered table-striped margin-bottom-5"">
+            <table class="table table-hover table-bordered table-striped margin-bottom-5" id="membersList">
                 <tr>
                     <th>Rank</th>
                     <th>Name</th>
