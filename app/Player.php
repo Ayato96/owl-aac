@@ -8,152 +8,227 @@ use Carbon\Carbon;
 
 use Thetispro\Setting\Facades\Setting;
 
+/**
+ * Class Player
+ * @package App
+ */
 class Player extends Model
 {
-	use SoftDeletes;
+    use SoftDeletes;
 
-	protected $table = 'players';
+    /**
+     * @var string
+     */
+    protected $table = 'players';
 
-	protected $attributes = array(
-		'experience'  => 4200,
-		'conditions' => '',
-		'level' => 8,
-		'mana' => 35,
-		'manamax' => 35,
-		'health' => 185,
-		'healthmax' => 185,
-		'soul' => 100,
-		'balance' => 0,
-		'group_id' => 1,
-		'cap' => 450,
-		);
+    /**
+     * @var array
+     */
+    protected $attributes = array(
+        'experience' => 4200,
+        'conditions' => '',
+        'level' => 8,
+        'mana' => 35,
+        'manamax' => 35,
+        'health' => 185,
+        'healthmax' => 185,
+        'soul' => 100,
+        'balance' => 0,
+        'group_id' => 1,
+        'cap' => 450,
+    );
 
-	protected $fillable = [
-		'name', 'account_id', 'vocation', 'sex', 'town_id'
-	];
+    /**
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'account_id', 'vocation', 'sex', 'town_id'
+    ];
 
-	protected $guarded = [
-		'world_id', 'group_id', 'level', 'health', 'healthmax', 'experience', 'lookbody', 'lookfeet',
-		'lookhead', 'looklegs', 'looktype', 'lookaddons', 'lookmount', 'maglevel', 'mana', 'manamax',
-		'manaspent', 'soul', 'posx', 'posy', 'posz', 'conditions', 'cap', 'lastlogin', 'lastip', 'save',
-		'skull', 'skulltime', 'rank_id', 'guildnick', 'lastlogout', 'blessings', 'pvp_blessing',
-		'balance', 'stamina', 'direction', 'loss_experience', 'loss_mana', 'loss_skills',
-		'loss_containers', 'loss_items', 'premend', 'online', '	marriage', 'promotion', 'deleted',
-		'description',
-	];
+    /**
+     * @var array
+     */
+    protected $guarded = [
+        'world_id', 'group_id', 'level', 'health', 'healthmax', 'experience', 'lookbody', 'lookfeet',
+        'lookhead', 'looklegs', 'looktype', 'lookaddons', 'lookmount', 'maglevel', 'mana', 'manamax',
+        'manaspent', 'soul', 'posx', 'posy', 'posz', 'conditions', 'cap', 'lastlogin', 'lastip', 'save',
+        'skull', 'skulltime', 'rank_id', 'guildnick', 'lastlogout', 'blessings', 'pvp_blessing',
+        'balance', 'stamina', 'direction', 'loss_experience', 'loss_mana', 'loss_skills',
+        'loss_containers', 'loss_items', 'premend', 'online', '	marriage', 'promotion', 'deleted',
+        'description',
+    ];
 
-	protected $dates = [
-		'created_at',
-		'updated_at',
-		'deleted_at',
-	];
+    /**
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
 
-	/*
-	* RELATIONSHIPS
-	*/
-	public function account()
-	{
-		return $this->belongsTo('App\Account', 'account_id');
-	}
-
-	public function membership()
+    /*
+    * RELATIONSHIPS
+    */
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function account()
     {
-       return $this->hasOne('App\GuildMembership');
+        return $this->belongsTo('App\Account', 'account_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function membership()
+    {
+        return $this->hasOne('App\GuildMembership');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function rank()
     {
-       return $this->belongsToMany('App\GuildRank', 'guild_membership', 'player_id', 'rank_id');
+        return $this->belongsToMany('App\GuildRank', 'guild_membership', 'player_id', 'rank_id');
     }
 
-	public function posts()
-	{
-		return $this->hasMany('App\Post');
-	}
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function posts()
+    {
+        return $this->hasMany('App\Post');
+    }
 
-	public function deaths()
-	{
-		return $this->hasMany('App\PlayerDeath');
-	}
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function deaths()
+    {
+        return $this->hasMany('App\PlayerDeath');
+    }
 
-	/*
-	* GETS AND SETTERS
-	*/
+    /*
+    * GETS AND SETTERS
+    */
 
-	public function getOnlineAttribute($value)
-	{
-		if ($value==0)
-		{
-			return 'Offline';
-		}
-		else
-		{
-			return 'Online';
-		}
-	}
+    /**
+     * @param $value
+     * @return string
+     */
+    public function getOnlineAttribute($value)
+    {
+        if ($value == 0) {
+            return 'Offline';
+        } else {
+            return 'Online';
+        }
+    }
 
-	public function getVocationAttribute($value)
-	{
-		foreach(Setting::get('Server.Vocations') as $vocation)
-		{
-			if ($value == $vocation['id']) return $vocation['name'];
-		}
-	}
+    /**
+     * @param $value
+     * @return mixed
+     */
+    public function getVocationAttribute($value)
+    {
+        foreach (Setting::get('Server.Vocations') as $vocation) {
+            if ($value == $vocation['id']) return $vocation['name'];
+        }
+    }
 
-	public function getMarriageAttribute($value)
-	{
-		return 'single';
-	}
+    /**
+     * @param $value
+     * @return string
+     */
+    public function getMarriageAttribute($value)
+    {
+        return 'single';
+    }
 
-	public function getSexAttribute($value)
-	{
-		return 'male';
-	}
+    /**
+     * @param $value
+     * @return string
+     */
+    public function getSexAttribute($value)
+    {
+        return 'male';
+    }
 
-	public function getWorldIdAttribute($value)
-	{
-		foreach(Setting::get('Server.Worlds') as $world)
-		{
-			if ($value == $world['id']) return $world['name'];
-		}
-	}
+    /**
+     * @param $value
+     * @return mixed
+     */
+    public function getWorldIdAttribute($value)
+    {
+        foreach (Setting::get('Server.Worlds') as $world) {
+            if ($value == $world['id']) return $world['name'];
+        }
+    }
 
-	public function getLastloginAttribute($value)
-	{
-		if ($value==0) {
-			return 'Never loggedin';
-		}
-		else {
-			return Carbon::createFromTimestamp($value)->diffForHumans();
-		}
+    /**
+     * @param $value
+     * @return string
+     */
+    public function getLastloginAttribute($value)
+    {
+        if ($value == 0) {
+            return 'Never loggedin';
+        } else {
+            return Carbon::createFromTimestamp($value)->diffForHumans();
+        }
 
-	}
+    }
 
-	public function getTown()
-	{
-		foreach(Setting::get('Server.Towns') as $town)
-		{
-			if ($this->attributes['town_id'] == $town['id']) return $town['name'];
-		}
-	}
+    /**
+     * @return mixed
+     */
+    public function getTown()
+    {
+        foreach (Setting::get('Server.Towns') as $town) {
+            if ($this->attributes['town_id'] == $town['id']) return $town['name'];
+        }
+    }
 
-	public function getPlayerList(){
-		return $this->account->players;
-	}
+    /**
+     * @return mixed
+     */
+    public function getPlayerList()
+    {
+        return $this->account->players;
+    }
 
-	public function getPremiumStatus(){
+    /**
+     * @return string
+     */
+    public function getPremiumStatus()
+    {
 
-		return ($this->account->premdays > 0 ? 'Premium Account' : 'Free Account');
-	}
+        return ($this->account->premdays > 0 ? 'Premium Account' : 'Free Account');
+    }
 
-	public function getGuild()
-	{
-		return $this->membership->guild->name;
-	}
+    /**
+     * @return mixed
+     */
+    public function getGuild()
+    {
+        return $this->membership->guild->name;
+    }
 
-	//slug character name
-	public function setNameAttribute($value)
-	{
-		$this->attributes['name'] = ucwords(strtolower($value));
-	}
+    /**
+     * @return mixed
+     */
+    public function getRank()
+    {
+        return $this->rank->first();
+    }
+
+    /**
+     * @param $value
+     */
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = ucwords(strtolower($value));
+    }
 }

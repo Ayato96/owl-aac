@@ -18,7 +18,6 @@ Route::get('/', function () {
     return view('pages.index')->with('posts', $posts);
 })->name('home');
 
-
 /**
  * Auth Route Group
  */
@@ -88,8 +87,10 @@ Route::group(['prefix' => 'dashboard'], function () {
 /**
  * Guild Route Group
  */
-Route::group(['prefix' => 'guilds'], function () {
+Route::group(['prefix' => 'guild'], function () {
     Route::get('/', 'GuildController@index')->name('guild.index');
+    Route::get('create', 'GuildController@create')->name('guild.create');
+    Route::post('create', 'GuildController@store')->name('guild.store');
     Route::get('/{id}', 'GuildController@show')->name('guild.show');
 });
 

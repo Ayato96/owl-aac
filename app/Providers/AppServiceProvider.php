@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
             $playerRank = DB::table('players')
             ->where([
                 ['group_id','<',4],
-                ])
+            ])
             ->orderBy('level','desc')
             ->limit(5)
             ->get();
@@ -37,15 +37,15 @@ class AppServiceProvider extends ServiceProvider
        /**
         * Banned words
         */
-        Validator::extend('not_contains', function($attribute, $value, $parameters)
+       Validator::extend('not_contains', function($attribute, $value, $parameters)
+       {
+        $words = array('fuck', 'caralho', 'fdp');
+        foreach ($words as $word)
         {
-            $words = array('fuck', 'caralho', 'fdp');
-            foreach ($words as $word)
-            {
-                if (stripos($value, $word) !== false) return false;
-            }
-            return true;
-        });
+            if (stripos($value, $word) !== false) return false;
+        }
+        return true;
+    });
 
         /**
         * Rules for character name
@@ -84,11 +84,11 @@ class AppServiceProvider extends ServiceProvider
              * checks to see if there is a monster with the same name
              */
             foreach(Setting::get('Server.Monsters') as $monsterName)
-            {
-                if (strcasecmp($value, $monsterName)==0) return false;
-            }
-            return true;
-        });
+                {
+                    if (strcasecmp($value, $monsterName)==0) return false;
+                }
+                return true;
+            });
 
         /**
         * VALIDATIONS TO PASSWORD CHANGE
@@ -112,6 +112,32 @@ class AppServiceProvider extends ServiceProvider
         {
             if(!Hash::check($value, Auth::User()->password)) {
                 return true;
+            }
+            return false;
+        });
+
+        /**
+        * Verifies the character level for guild creation
+        */
+        Validator::extend('check_level', function($attribute, $value, $parameters)
+        {
+            $player = \App\Player::find($value);
+            if($player->level >= env("OWL_GUILD_LEVEL")) {
+                return true;
+            }
+            return false;
+        });
+
+        /**
+        * Check if account own this character
+        */
+        Validator::extend('check_character_account', function($attribute, $value, $parameters)
+        {
+            $players = \App\Account::loggedin()->players()->get();
+            foreach ($players as $player) {
+                if ($player->id == $value) {
+                    return true;
+                }
             }
             return false;
         });
