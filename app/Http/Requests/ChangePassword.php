@@ -16,14 +16,6 @@ class ChangePassword extends FormRequest
         return true;
     }
 
-    public function messages()
-    {
-        return [
-        'old_password_check' => 'The current password does not match.',
-        'new_password_check' => 'The new password can not be the same with the current.',
-        ];
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -32,8 +24,8 @@ class ChangePassword extends FormRequest
     public function rules()
     {
         return [
-        'current_password' => 'required|old_password_check',
-        'new_password' => 'required|confirmed|min:7|max:32|alpha_dash|new_password_check',
+            'current_password' => 'required|old_password_check',
+            'new_password' => 'required|confirmed|min:7|max:32|alpha_dash|new_password_check',
         ];
     }
 }

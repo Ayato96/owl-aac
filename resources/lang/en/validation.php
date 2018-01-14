@@ -95,6 +95,13 @@ return [
     |
     */
 
+    'check_level' => ':attribute does not have the required level.',
+    'old_password_check' => 'The current password does not match.',
+    'new_password_check' => 'The new password can not be the same with the current.',
+    'not_contains' => 'The :attribute must not contain banned words.',
+    'character_name' => 'The :attribute contains illegal letters or reserved words.',
+    'check_character_account' => 'This :attribute does not belong to you.',
+
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',

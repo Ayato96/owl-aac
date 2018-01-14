@@ -27,7 +27,7 @@ class EditPlayer extends FormRequest
     public function rules()
     {
         return [
-        'description' => 'max:200',
+            'description' => 'max:200',
         ];
     }
 }

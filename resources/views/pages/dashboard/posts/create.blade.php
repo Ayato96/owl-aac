@@ -37,9 +37,9 @@
 		{!! Form::label('player_id', 'Player Name', ['class' => 'col-md-4 control-label']) !!}
 		<div class="col-md-6">
 			{!! Form::select('player_id', $players, null, ['placeholder' => 'Choose a player', 'class' => 'form-control']) !!}
-			@if ($errors->has('town_id'))
+			@if ($errors->has('player_id'))
 			<span class="help-block">
-				<strong>{{ $errors->first('town_id') }}</strong>
+				<strong>{{ $errors->first('player_id') }}</strong>
 			</span>
 			@endif
 		</div>
