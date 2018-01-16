@@ -14,7 +14,7 @@ class ChangeColumnDeletionOnPlayersTable extends Migration
     public function up()
     {
         Schema::table('players', function (Blueprint $table) {
-            $table->bigInteger('deletion')->nullable()->change();
+            $table->bigInteger('deletion')->nullable()->default(NULL)->change();
             $table->integer('created_at')->change();
             $table->integer('updated_at')->change();
         });
