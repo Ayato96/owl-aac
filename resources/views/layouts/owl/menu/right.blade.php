@@ -1,8 +1,11 @@
 <div class="panel-group">
-	
+
 	<div class="panel panel-primary">
 		<div class="panel-heading">Rank Level</div>
 		<div class="panel-body">
+			@if ($playerRank->isEmpty())
+				No players
+			@endif
 			@foreach ($playerRank as $playerRank)
 			<div class="rank-players">
 			{{ $loop->iteration }}- <a href="/player/{{ $playerRank->name }}">{!! $playerRank->name !!}</a>

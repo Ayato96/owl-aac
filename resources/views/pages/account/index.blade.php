@@ -38,7 +38,7 @@
 <div class="panel panel-primary">
 	<div class="panel-heading">Characters</div>
 	<div class="panel-body padding-0">
-		<table class="table table-hover table-bordered table-striped margin-bottom-5"">
+		<table class="table table-hover table-bordered table-striped margin-bottom-5">
 		@if ($players->isEmpty())
 			<div class="text-center">
 				You don't have characters.

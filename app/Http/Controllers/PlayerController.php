@@ -52,7 +52,7 @@ class PlayerController extends Controller
     {
         $data = $request->only(['name', 'vocation', 'sex', 'town_id']);
         Account::loggedin()->players()->create($data);
-        flash('Character created successfully.')->success();
+        flash('Character created successfully.')->success()->important();
         return redirect('account');
     }
 

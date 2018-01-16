@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddSoftdeleteToPlayersTable extends Migration
+class ChangeColumnDeletionOnPlayersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,9 @@ class AddSoftdeleteToPlayersTable extends Migration
     public function up()
     {
         Schema::table('players', function (Blueprint $table) {
-            $table->softDeletes();
+            $table->bigInteger('deletion')->nullable()->change();
+            $table->integer('created_at')->change();
+            $table->integer('updated_at')->change();
         });
     }
 
@@ -26,7 +28,7 @@ class AddSoftdeleteToPlayersTable extends Migration
     public function down()
     {
         Schema::table('players', function (Blueprint $table) {
-            $table->dropSoftDeletes();
+            $table->bigInteger('deletion')->default(0)->change();
         });
     }
 }

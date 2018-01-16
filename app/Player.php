@@ -22,6 +22,26 @@ class Player extends Model
     protected $table = 'players';
 
     /**
+     * For deletion column works in laravel and otx/tfs
+     * @var string
+     */
+    protected $dateFormat = 'U';
+
+    /**
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deletion',
+    ];
+
+    /**
+     * @var string
+     */
+    const DELETED_AT = 'deletion';
+
+    /**
      * @var array
      */
     protected $attributes = array(
@@ -54,18 +74,10 @@ class Player extends Model
         'manaspent', 'soul', 'posx', 'posy', 'posz', 'conditions', 'cap', 'lastlogin', 'lastip', 'save',
         'skull', 'skulltime', 'rank_id', 'guildnick', 'lastlogout', 'blessings', 'pvp_blessing',
         'balance', 'stamina', 'direction', 'loss_experience', 'loss_mana', 'loss_skills',
-        'loss_containers', 'loss_items', 'premend', 'online', '	marriage', 'promotion', 'deleted',
+        'loss_containers', 'loss_items', 'premend', 'online', '	marriage', 'promotion', 'deletion',
         'description',
     ];
 
-    /**
-     * @var array
-     */
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'deleted_at',
-    ];
 
     /*
     * RELATIONSHIPS
@@ -231,4 +243,5 @@ class Player extends Model
     {
         $this->attributes['name'] = ucwords(strtolower($value));
     }
+
 }

@@ -15,6 +15,9 @@ use Illuminate\Http\Request;
 
 Route::get('/', function () {
     $posts = \App\Post::all()->reverse();
+    if ($posts->isEmpty()) {
+    	flash('There are no posts.')->error();
+    }
     return view('pages.index')->with('posts', $posts);
 })->name('home');
 

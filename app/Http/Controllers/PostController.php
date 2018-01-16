@@ -26,6 +26,9 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
+        if ($posts->isEmpty()) {
+            flash('there are no posts.')->error();
+        }
         return view('pages.dashboard.posts.index')->with('posts', $posts);
     }
 
@@ -54,7 +57,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        //TODO
     }
 
     /**
@@ -75,6 +78,6 @@ class PostController extends Controller
      */
     public function delete($id)
     {
-        //
+        //TODO
     }
 }
