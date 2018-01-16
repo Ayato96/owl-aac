@@ -5,18 +5,6 @@
 
 @section('content')
 
-@if (session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
-@endif
-
-@if (session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
-
 <div class="panel panel-primary">
 	<div class="panel-heading">Account Status</div>
 	<div class="panel-body padding-0">
@@ -50,7 +38,7 @@
 <div class="panel panel-primary">
 	<div class="panel-heading">Characters</div>
 	<div class="panel-body padding-0">
-		<table class="table table-hover table-bordered table-striped margin-bottom-5"">
+		<table class="table table-hover table-bordered table-striped margin-bottom-5">
 		@if ($players->isEmpty())
 			<div class="text-center">
 				You don't have characters.
@@ -74,7 +62,8 @@
 					<div class="text-center">
 						{!! link_to_route('player.edit', 'Edit',
 							[$player->id], ['class' => 'btn btn-primary btn-xs']) !!}
-						<a href="" class="btn btn-danger btn-xs">Delete</a>
+						{!! link_to_route('player.delete', 'delete',
+							[$player->id], ['class' => 'btn btn-danger btn-xs']) !!}
 					</div>
 				</td>
 			</tr>

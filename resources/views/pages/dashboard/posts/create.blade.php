@@ -32,20 +32,14 @@
 			@endif
 		</div>
 	</div>
-	
-	{{-- <select name="player_id">
-		@foreach ($players as $id => $name)
-			<option value="{{ $id }}">{{ $name }}</option>
-		@endforeach
-	</select> --}}
 
 	<div class="form-group {{ $errors->has('player_id') ? ' has-error' : '' }}">
 		{!! Form::label('player_id', 'Player Name', ['class' => 'col-md-4 control-label']) !!}
 		<div class="col-md-6">
 			{!! Form::select('player_id', $players, null, ['placeholder' => 'Choose a player', 'class' => 'form-control']) !!}
-			@if ($errors->has('town_id'))
+			@if ($errors->has('player_id'))
 			<span class="help-block">
-				<strong>{{ $errors->first('town_id') }}</strong>
+				<strong>{{ $errors->first('player_id') }}</strong>
 			</span>
 			@endif
 		</div>
@@ -53,7 +47,7 @@
 
 	<div class="form-group">
 		<div class="col-md-6 col-md-offset-4">
-			{!! Form::submit('Edit', ['class'=>'btn btn-primary']) !!}
+			{!! Form::submit('Create', ['class'=>'btn btn-primary']) !!}
 		</div>
 	</div>
 

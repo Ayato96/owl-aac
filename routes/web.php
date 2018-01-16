@@ -10,47 +10,49 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-use Thetispro\Setting\Facades\Setting;
+
 use Illuminate\Http\Request;
 
-Route::get('/', function ()
-{
-	$posts = \App\Post::all()->reverse();
-	return view('pages.index')->with('posts', $posts);
+Route::get('/', function () {
+    $posts = \App\Post::all()->reverse();
+    if ($posts->isEmpty()) {
+    	flash('There are no posts.')->error();
+    }
+    return view('pages.index')->with('posts', $posts);
 })->name('home');
-
 
 /**
  * Auth Route Group
  */
 Route::group(['prefix' => 'auth'], function () {
-	Route::get('login', 'AuthController@login')->name('auth.login');
-	Route::post('login','AuthController@authenticate')->name('auth.auth');
-	Route::post('logout','AuthController@logout')->name('auth.logout');
+    Route::get('login', 'AuthController@login')->name('auth.login');
+    Route::post('login', 'AuthController@authenticate')->name('auth.auth');
+    Route::post('logout', 'AuthController@logout')->name('auth.logout');
 });
 
 /**
  * Account Route Group
  */
 Route::group(['prefix' => 'account'], function () {
-	Route::get('/', 'AccountController@index')->name('account.index');
-	Route::get('create', 'AccountController@create')->name('account.create');
-	Route::post('create', 'AccountController@store')->name('account.store');
-	Route::get('update/password', 'AccountController@changePassword')->name('account.change.password');
-	Route::post('update/password', 'AccountController@updatePassword')->name('account.update.password');
+    Route::get('/', 'AccountController@index')->name('account.index');
+    Route::get('create', 'AccountController@create')->name('account.create');
+    Route::post('create', 'AccountController@store')->name('account.store');
+    Route::get('update/password', 'AccountController@changePassword')->name('account.change.password');
+    Route::post('update/password', 'AccountController@updatePassword')->name('account.update.password');
 });
 
 /**
  * Player Route Group
  */
 Route::group(['prefix' => 'player'], function () {
-	Route::get('new', 'PlayerController@create')->name('player.create');
-	Route::post('new', 'PlayerController@store')->name('player.store');
-	Route::get('edit/{id}', 'PlayerController@edit')->name('player.edit');
-	Route::post('update/{id}', 'PlayerController@update')->name('player.update');
-	Route::get('/', 'PlayerController@index')->name('player.index');
-	Route::get('/{name}', 'PlayerController@show')->name('player.show');
-	Route::post('/', 'PlayerController@search')->name('player.search');
+    Route::get('/', 'PlayerController@index')->name('player.index');
+    Route::get('create', 'PlayerController@create')->name('player.create');
+    Route::post('create', 'PlayerController@store')->name('player.store');
+    Route::get('edit/{id}', 'PlayerController@edit')->name('player.edit');
+    Route::post('update/{id}', 'PlayerController@update')->name('player.update');
+    Route::get('delete/{id}', 'PlayerController@destroy')->name('player.delete');
+    Route::post('/', 'PlayerController@search')->name('player.search');
+    Route::get('/{name}', 'PlayerController@show')->name('player.show');
 });
 
 /**
@@ -63,34 +65,36 @@ Route::get('post/{id}', 'NewsController@show')->name('post.show');
  */
 Route::group(['prefix' => 'dashboard'], function () {
 
-	Route::get('/', 'AdminController@index')->name('dashboard');
+    Route::get('/', 'AdminController@index')->name('dashboard');
 
-	/**
-	 * DashBoard Post Route Group
-	 */
-	Route::group(['prefix' => 'posts'], function() {
-		Route::get('/', 'PostController@index')->name('post.index');
-		Route::get('create', 'PostController@create')->name('post.create');
-		Route::post('create', 'PostController@store')->name('post.store');
-		Route::get('edit/{id}', 'PostController@edit')->name('post.edit');
-		Route::post('update', 'PostController@edit')->name('post.update');
-	});
+    /**
+     * DashBoard Post Route Group
+     */
+    Route::group(['prefix' => 'posts'], function () {
+        Route::get('/', 'PostController@index')->name('post.index');
+        Route::get('create', 'PostController@create')->name('post.create');
+        Route::post('create', 'PostController@store')->name('post.store');
+        Route::get('edit/{id}', 'PostController@edit')->name('post.edit');
+        Route::post('update', 'PostController@edit')->name('post.update');
+    });
 
-	/**
-	 * DashBoard Configurations Route Group
-	 */
-	Route::group(['prefix' => 'config'], function() {
-		Route::get('/', 'ConfigController@index')->name('config.index');
-		Route::post('set', 'ConfigController@set')->name('config.set');
-	});
+    /**
+     * DashBoard Configurations Route Group
+     */
+    Route::group(['prefix' => 'config'], function () {
+        Route::get('/', 'ConfigController@index')->name('config.index');
+        Route::post('set', 'ConfigController@set')->name('config.set');
+    });
 });
 
 /**
  * Guild Route Group
  */
-Route::group(['prefix' => 'guilds'], function() {
-		Route::get('/', 'GuildController@index')->name('guild.index');
-		Route::get('/{id}', 'GuildController@show')->name('guild.show');
+Route::group(['prefix' => 'guild'], function () {
+    Route::get('/', 'GuildController@index')->name('guild.index');
+    Route::get('create', 'GuildController@create')->name('guild.create');
+    Route::post('create', 'GuildController@store')->name('guild.store');
+    Route::get('/{id}', 'GuildController@show')->name('guild.show');
 });
 
 /*

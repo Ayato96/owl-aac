@@ -1,7 +1,7 @@
 @extends('layouts.owl.app')
 
-@section('title', 'Guilds List')
-@section('header', 'Guilds List')
+@section('title', 'Guild List')
+@section('header', 'Guild List')
 
 @section('content')
     @foreach ($guilds as $guild)
@@ -10,7 +10,7 @@
             <div class="col-md-8">
                 <div>Name: {{ $guild->name }}</div>
                 <div>Motd: {{ $guild->motd }}</div>
-                <div>Owner: 
+                <div>Owner:
                     {!! link_to_route('player.show', $guild->owner->name, [$guild->owner->name], []) !!}
                 </div>
                 <div>Members: {{ $guild->players->count() }}</div>

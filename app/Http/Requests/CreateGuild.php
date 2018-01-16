@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreatePlayer extends FormRequest
+class CreateGuild extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +24,17 @@ class CreatePlayer extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:5|max:32|unique:players|not_contains|character_name',
-            'vocation' => 'required|integer|in:1,2,3,4',
-            'town_id' => 'required|integer|in:1,2,3',
-            'sex' => 'required|integer|in:0,1',
+            'name' => 'required|min:4|max:20|unique:guilds,name',
+            'ownerid' => 'required|unique:guilds,ownerid|integer|check_level|check_character_account',
+            'motd' => 'max:200'
         ];
     }
 
     public function attributes()
     {
         return [
-            'town_id' => 'Town',
+            'name' => 'Guild Name',
+            'ownerid' => 'Character',
         ];
     }
 }

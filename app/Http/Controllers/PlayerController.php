@@ -8,85 +8,131 @@ use App\Http\Requests\EditPlayer;
 use App\Account;
 use App\Player;
 
+/**
+ * Class PlayerController
+ * @package App\Http\Controllers
+ */
 class PlayerController extends Controller
 {
+    /**
+     * PlayerController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware(['auth'], ['except' => ['show', 'index', 'search']]);
+    }
 
-	public function __construct()
-	{
-		$this->middleware(['auth'], ['except' => ['show', 'index']]);
-	}
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function index()
+    {
+        return view('pages.players.search');
+    }
 
-	public function index()
-	{
-		return view('pages.players.index');
-	}
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function create()
+    {
+        if (Account::loggedin()->players->count() >= env('OWL_MAX_ACCOUNT_PLAYERS')) {
+            flash("You've already reached the limit of character creation.")
+                ->error()
+                ->important();
+            return redirect()->back();
+        }
+        return view('pages.players.create');
+    }
 
-	public function create()
-	{
-		return view('pages.createCharacter');
-	}
-
-	public function store(CreatePlayer $request)
-	{
-		$data = $request->only(['name', 'vocation', 'sex', 'town_id']); 
+    /**
+     * @param CreatePlayer $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(CreatePlayer $request)
+    {
+        $data = $request->only(['name', 'vocation', 'sex', 'town_id']);
         Account::loggedin()->players()->create($data);
-		return redirect('account');
-	}
+        flash('Character created successfully.')->success()->important();
+        return redirect('account');
+    }
 
-	public function show($name)
-	{
-		$player = Player::whereName($name)->first();
-		if ($player) 
-		{
-			$playerAccount = $player->account->toArray();
-			return view('pages.player')->with([
-				'player' => $player, 
-				'playerAccount' => $playerAccount 
-				]);
-		}
-		return redirect()->route('player.index');
-	}
+    /**
+     * @param $name
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
+    public function show($name)
+    {
+        $player = Player::whereName($name)->first();
+        if ($player) {
+            return view('pages.players.show')->with([
+                'player' => $player,
+            ]);
+        }
+        return redirect()->route('player.index');
+    }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function search(Request $request)
-    {   
+    {
         $name = ucwords(strtolower($request->name));
         $player = Player::whereName($name)->first();
         if ($player) {
             return redirect()->route('player.show', [$player->name]);
         }
+        flash('Player not found')->error();
         return redirect()->route('player.index');
     }
 
-	public function edit($id)
-	{	
+    /**
+     * @param $id
+     * @return $this|\Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function edit($id)
+    {
         $player = Player::find($id);
-
+        if (!$player) {
+            flash('Player not exist.')->error();
+            return redirect()->route('account.index');
+        }
         $this->authorize('update', $player);
+        return view('pages.players.edit')->with(compact('player'));
+    }
 
-        if (!$player) 
-        {
-			return redirect()->route('account.index')->with('error', 'Player not exist');	
-		}
-
-		return view('pages.players.edit')->with(compact('player'));
-	}
-
+    /**
+     * @param EditPlayer $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(EditPlayer $request, $id)
     {
         Player::where('id', $id)->update($request->only(['description']));
-
-        return redirect()->route('account.index')->with('status', 'Player edited');
+        flash('character edited successfully.')->success();
+        return redirect()->route('account.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
+     * @throws \Exception
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy($id)
     {
-        //
+        $player = Player::find($id);
+        if (!$player) {
+            flash('Player not exist.')->error();
+            return redirect()->route('account.index');
+        }
+        $this->authorize('delete', $player);
+        $player->delete();
+        flash('Character deleted.')->success()->important();
+        return redirect()->back();
     }
 
 }

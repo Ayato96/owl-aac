@@ -5,7 +5,6 @@
 
 @section('content')
 <div class="col-md-12">
-	
 	<div class="panel panel-primary">
 		<div class="panel-heading">Search Character</div>
 		<div class="panel-body">
@@ -20,6 +19,5 @@
 			{!! Form::close() !!}
 		</div>
 	</div>
-	
 </div>
 @endsection

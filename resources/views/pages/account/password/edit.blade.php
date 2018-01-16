@@ -5,7 +5,7 @@
 
 @section('content')
 
-{!! Form::open(['route' => 'account.update.password', 'class'=>'form-horizontal']) !!}
+{!! Form::open(['route' => 'account.update.password', 'class'=>'form-horizontal', 'id' => 'editPassword']) !!}
 
 <div class="form-group{{ $errors->has('current_password') ? ' has-error' : '' }}">
     {!! Form::label('current_password', 'Current password', ['class' => 'col-md-4 control-label']) !!}
@@ -51,4 +51,9 @@
 
 {!! Form::close() !!}
 
+@endsection
+
+@section('js')
+<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+{!! JsValidator::formRequest('App\Http\Requests\ChangePassword', '#editPassword') !!}
 @endsection

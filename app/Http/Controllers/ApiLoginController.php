@@ -17,7 +17,7 @@ class ApiLoginController extends Controller
     /**
      * Authenticate accounts, list your players and send to client 11
      * @param  Request $request To get content of json
-     * @return json    $data    Return the $data as json 
+     * @return json    $data    Return the $data as json
      */
     public function login(Request $request)
     {
@@ -33,7 +33,7 @@ class ApiLoginController extends Controller
         $requestJson = json_decode($request->getContent(), true);
 
         /**
-         * SELECT ACCOUNT 
+         * SELECT ACCOUNT
          */
         $account = Account::where('name', $requestJson['accountname'])
             ->where('password', sha1($requestJson['password']))->first(); 
