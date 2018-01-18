@@ -7,7 +7,6 @@ use Hash;
 use App\Http\Requests\CreateAccount;
 use App\Http\Requests\ChangePassword;
 use App\Account;
-use App\Player;
 
 /**
  * Class AccountController
@@ -70,5 +69,6 @@ class AccountController extends Controller
         flash('Password changed.')->success();
         return redirect()->route('account.index');
     }
+
 
 }

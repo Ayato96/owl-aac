@@ -11,12 +11,11 @@
 |
 */
 
-use Illuminate\Http\Request;
 
 Route::get('/', function () {
     $posts = \App\Post::all()->reverse();
     if ($posts->isEmpty()) {
-    	flash('There are no posts.')->error();
+        flash('There are no posts.')->error();
     }
     return view('pages.index')->with('posts', $posts);
 })->name('home');
@@ -28,6 +27,10 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('login', 'AuthController@login')->name('auth.login');
     Route::post('login', 'AuthController@authenticate')->name('auth.auth');
     Route::post('logout', 'AuthController@logout')->name('auth.logout');
+    Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 });
 
 /**
