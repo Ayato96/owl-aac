@@ -11,16 +11,16 @@
 		<table class="table table-hover table-bordered table-striped margin-bottom-5">
 			<tr>
 				<td class="col-md-3">Account Name:</td>
-				<td>{{ Auth::user()->name }}</td>
+				<td>{{ $account->name }}</td>
 			</tr>
 			<tr>
 				<td class="col-md-3">Email:</td>
-				<td>{{ Auth::user()->email }}</td>
+				<td>{{ $account->email }}</td>
 			</tr>
 			<tr>
 				<td class="col-md-3">Account Status:</td>
 				<td>
-					@if (Auth::user()->premdays>0)
+					@if ($account->premdays>0)
 					Premium Account
 					@else
 					Free Account
@@ -29,8 +29,11 @@
 			</tr>
 		</table>
 		<div class="text-center margin-bottom-5">
-			<a href="{{ route('account.change.password') }}" class="btn btn-primary btn-sm">Change Password</a>
+			{!! link_to_route('account.change.password', 'Change Password', [], ['class' => 'btn btn-primary btn-sm']) !!}
 			<a href="account/change/email" class="btn btn-primary btn-sm">Change Email</a>
+			@if (!$account->key)
+				{!! link_to_route('account.show.key', 'Generate Key', [], ['class' => 'btn btn-warning btn-sm']) !!}
+			@endif
 		</div>
 	</div>
 </div>
@@ -62,8 +65,13 @@
 					<div class="text-center">
 						{!! link_to_route('player.edit', 'Edit',
 							[$player->id], ['class' => 'btn btn-primary btn-xs']) !!}
-						{!! link_to_route('player.delete', 'delete',
-							[$player->id], ['class' => 'btn btn-danger btn-xs']) !!}
+							@if (!$player->trashed())
+								{!! link_to_route('player.delete', 'Delete',
+									[$player->id], ['class' => 'btn btn-danger btn-xs']) !!}
+							@else
+								{!! link_to_route('player.delete', 'Undelete',
+									[$player->id], ['class' => 'btn btn-warning btn-xs']) !!}
+							@endif
 					</div>
 				</td>
 			</tr>
