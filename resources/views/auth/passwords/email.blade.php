@@ -33,6 +33,7 @@
                 <button type="submit" class="btn btn-primary">
                     Send Password Reset Link
                 </button>
+                <a href="{{ route('key.form') }}" class="btn btn-warning">Lost Email</a>
             </div>
         </div>
     </form>
