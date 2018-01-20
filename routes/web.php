@@ -58,6 +58,7 @@ Route::group(['prefix' => 'player'], function () {
     Route::get('edit/{id}', 'PlayerController@edit')->name('player.edit');
     Route::post('update/{id}', 'PlayerController@update')->name('player.update');
     Route::get('delete/{id}', 'PlayerController@destroy')->name('player.delete');
+    Route::get('restore/{id}', 'PlayerController@restore')->name('player.restore');
     Route::post('/', 'PlayerController@search')->name('player.search');
     Route::get('/{name}', 'PlayerController@show')->name('player.show');
 });

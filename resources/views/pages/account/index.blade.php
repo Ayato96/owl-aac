@@ -67,10 +67,10 @@
 							[$player->id], ['class' => 'btn btn-primary btn-xs']) !!}
 							@if (!$player->trashed())
 								{!! link_to_route('player.delete', 'Delete',
-									[$player->id], ['class' => 'btn btn-danger btn-xs']) !!}
+									[$player->id], ['class' => 'btn btn-danger btn-xs','onclick'=>"return confirm('Are you sure?')"]) !!}
 							@else
-								{!! link_to_route('player.delete', 'Undelete',
-									[$player->id], ['class' => 'btn btn-warning btn-xs']) !!}
+								{!! link_to_route('player.restore', 'Restore',
+									[$player->id], ['class' => 'btn btn-warning btn-xs','onclick'=>"return confirm('Are you sure?')"]) !!}
 							@endif
 					</div>
 				</td>

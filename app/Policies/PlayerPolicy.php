@@ -60,4 +60,17 @@ class PlayerPolicy
     {
         return $account->id === $player->account_id;
     }
+
+    /**
+     * Determine whether the Account can restore     the player.
+     * @param Account $account
+     * @param Player $player
+     * @return bool
+     */
+    public function restore(Account $account, Player $player)
+    {
+        return $account->id === $player->account_id;
+    }
+
+
 }
