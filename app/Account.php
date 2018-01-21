@@ -69,7 +69,17 @@ class Account extends Authenticatable
      */
     public function players()
     {
+        return $this->hasMany('App\Player');
+    }
+
+    public function playersWithTrash()
+    {
         return $this->hasMany('App\Player')->withTrashed();
+    }
+
+    public function playersOnlyTrash()
+    {
+        return $this->hasMany('App\Player')->onlyTrashed();
     }
 
     /**

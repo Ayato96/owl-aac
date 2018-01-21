@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'My Application',
+    'name' => env('APP_NAME', 'OWLAAC'),
 
     /*
     |--------------------------------------------------------------------------
@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'timezone' => 'America/Sao_Paulo',
+    'timezone' => env('OWL_TIMEZONE', 'America/Sao_paulo'),
 
     /*
     |--------------------------------------------------------------------------

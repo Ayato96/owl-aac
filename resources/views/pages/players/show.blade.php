@@ -56,34 +56,35 @@
 			</table>
 		</div>
 	</div>
-
-	<div class="panel panel-primary">
-		<div class="panel-heading">Deaths</div>
-		<div class="panel-body padding-0">
-			<table class="table table-hover table-bordered table-striped margin-bottom-5">
-				@foreach ($player->deaths as $death)
-				<tr>
-					<td class="col-md-4">{{ $death->time }}</td>
-					<td>
-						Killed at level {{ $death->level }} by {!! $death->killed_by !!}
-						@if ($death->killed_by != $death->mostdamage_by)
-							and {!! $death->mostdamage_by !!}
-						@endif
-					</td>
-				</tr>
-				@endforeach
-			</table>
+	@if (!$player->deaths->isEmpty())
+		<div class="panel panel-primary">
+			<div class="panel-heading">Deaths</div>
+			<div class="panel-body padding-0">
+				<table class="table table-hover table-bordered table-striped margin-bottom-5">
+					@foreach ($player->deaths as $death)
+					<tr>
+						<td class="col-md-4">{{ $death->time }}</td>
+						<td>
+							Killed at level {{ $death->level }} by {!! $death->killed_by !!}
+							@if ($death->killed_by != $death->mostdamage_by)
+								and {!! $death->mostdamage_by !!}
+							@endif
+						</td>
+					</tr>
+					@endforeach
+				</table>
+			</div>
 		</div>
-	</div>
+	@endif
 
-	<div class="panel panel-primary">
+	{{-- <div class="panel panel-primary">
 		<div class="panel-heading">Frags</div>
 		<div class="panel-body padding-0">
 			<table class="table table-hover table-bordered table-striped margin-bottom-5">
 				...
 			</table>
 		</div>
-	</div>
+	</div> --}}
 
 	<div class="panel panel-primary">
 		<div class="panel-heading">Account Information</div>
@@ -123,7 +124,7 @@
 						<div class="text-center">
 							{!!
 								link_to_route('player.show', 'Show',
-									[$player->slug], ['class' => 'btn btn-primary btn-xs'])
+									[$player->name], ['class' => 'btn btn-primary btn-xs'])
 							!!}
 						</div>
 					</td>

@@ -225,7 +225,11 @@ class Player extends Model
      */
     public function getGuild()
     {
-        return $this->membership->guild->name;
+        if (isset($this->membership)) {
+            return $this->membership->guild->name;
+        } else {
+            return false;
+        }
     }
 
     /**

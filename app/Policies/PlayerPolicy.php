@@ -62,7 +62,7 @@ class PlayerPolicy
     }
 
     /**
-     * Determine whether the Account can restore     the player.
+     * Determine whether the Account can restore the player.
      * @param Account $account
      * @param Player $player
      * @return bool
