@@ -185,6 +185,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Proengsoft\JsValidation\JsValidationServiceProvider::class,
+        Jenssegers\Date\DateServiceProvider::class,
     ],
 
     /*
@@ -239,6 +240,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
+        'Date' => Jenssegers\Date\Date::class,
     ],
 
 ];
