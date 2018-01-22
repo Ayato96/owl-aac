@@ -1,14 +1,14 @@
 @extends('layouts.owl.app')
 
-@section('title','Create Guild')
-@section('header','Create Guild')
+@section('title', @trans('words.create_guild'))
+@section('header', @trans('words.create_guild'))
 
 @section('content')
 
     {!! Form::open(['route' => 'guild.store', 'class'=>'form-horizontal', 'id' => 'createguild']) !!}
 
     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-        {!! Form::label('name', 'Guild Name', ['class' => 'col-md-4 control-label']) !!}
+        {!! Form::label('name', @trans('words.guild_name'), ['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
             {!! Form::text('name', null, ['class' => 'form-control', 'minlength' => 4, 'maxlength' => 20, 'required', 'autofocus']) !!}
             @if ($errors->has('name'))
@@ -20,7 +20,7 @@
     </div>
 
     <div class="form-group {{ $errors->has('ownerid') ? ' has-error' : '' }}">
-        {!! Form::label('ownerid', 'Leader', ['class' => 'col-md-4 control-label']) !!}
+        {!! Form::label('ownerid', @trans('words.leader'), ['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
             {!! Form::select('ownerid', $players, null, ['placeholder' => 'Choose a player', 'class' => 'form-control']) !!}
             @if ($errors->has('ownerid'))
@@ -45,7 +45,7 @@
 
     <div class="form-group">
         <div class="col-md-6 col-md-offset-4">
-            {!! Form::submit('Create', ['class'=>'btn btn-primary']) !!}
+            {!! Form::submit(@trans('words.create'), ['class'=>'btn btn-primary']) !!}
         </div>
     </div>
 

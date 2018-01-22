@@ -1,14 +1,14 @@
 @extends('layouts.owl.app')
 
-@section('title','Create Character')
-@section('header','Create Character')
+@section('title', @trans('words.create_character'))
+@section('header', @trans('words.create_character'))
 
 @section('content')
 
     {!! Form::open(['route' => 'player.store', 'class'=>'form-horizontal', 'id' => 'createplayer']) !!}
 
     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-        {!! Form::label('name', 'Character Name', ['class' => 'col-md-4 control-label']) !!}
+        {!! Form::label('name', @trans('words.character_name'), ['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
             {!! Form::text('name', null, ['class' => 'form-control', 'minlength' => 7, 'maxlength' => 32, 'required', 'autofocus']) !!}
             @if ($errors->has('name'))
@@ -20,7 +20,7 @@
     </div>
 
     <div class="form-group {{ $errors->has('sex') ? ' has-error' : '' }}">
-        {!! Form::label('sex', 'Sex', ['class' => 'col-md-4 control-label']) !!}
+        {!! Form::label('sex', @trans('words.sex'), ['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
             <div class="btn-group center-block" data-toggle="buttons">
                 <label class="btn btn-primary active">
@@ -39,7 +39,7 @@
     </div>
 
     <div class="form-group {{ $errors->has('vocation') ? ' has-error' : '' }}">
-        {!! Form::label('vocation', 'Vocation', ['class' => 'col-md-4 control-label']) !!}
+        {!! Form::label('vocation', @trans('words.vocation'), ['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
             <div class="btn-group center-block" data-toggle="buttons">
                 <label class="btn btn-primary active">
@@ -64,7 +64,7 @@
     </div>
 
     <div class="form-group {{ $errors->has('town_id') ? ' has-error' : '' }}">
-        {!! Form::label('town_id', 'Town', ['class' => 'col-md-4 control-label']) !!}
+        {!! Form::label('town_id', @trans('words.town'), ['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
             <div class="btn-group center-block" data-toggle="buttons">
                 <label class="btn btn-primary active">
@@ -87,7 +87,7 @@
 
     <div class="form-group">
         <div class="col-md-6 col-md-offset-4">
-            {!! Form::submit('Create', ['class'=>'btn btn-primary']) !!}
+            {!! Form::submit(@trans('words.create'), ['class'=>'btn btn-primary']) !!}
         </div>
     </div>
 
@@ -96,6 +96,6 @@
 @endsection
 
 @section('js')
-<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-{!! JsValidator::formRequest('App\Http\Requests\CreatePlayer', '#createplayer') !!}
+    <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+    {!! JsValidator::formRequest('App\Http\Requests\CreatePlayer', '#createplayer') !!}
 @endsection

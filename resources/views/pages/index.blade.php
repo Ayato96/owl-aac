@@ -1,7 +1,7 @@
 @extends('layouts.owl.app')
 
-@section('title', 'News')
-@section('header', 'News')
+@section('title', @trans('words.news'))
+@section('header', @trans('words.news'))
 
 @section('content')
 
