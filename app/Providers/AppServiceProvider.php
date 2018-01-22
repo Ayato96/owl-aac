@@ -23,8 +23,9 @@ class AppServiceProvider extends ServiceProvider
             $playerRank = DB::table('players')
                 ->where([
                     ['group_id', '<', 4],
+                    ['deletion', '=', null]
                 ])
-                ->orderBy('level', 'desc')
+                ->orderBy('experience', 'desc')
                 ->limit(5)
                 ->get();
             $view->with('playerRank', $playerRank);

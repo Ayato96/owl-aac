@@ -31,21 +31,21 @@ class Account extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'key',
     ];
 
     /**
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'key',
     ];
 
     /**
      * @var array
      */
     protected $guarded = [
-        'is_admin', 'salt', 'premdays', 'lastday', 'key', 'blocked', 'warnings', 'group_id'
+        'is_admin', 'salt', 'premdays', 'lastday', 'blocked', 'warnings', 'group_id'
     ];
 
     /**
@@ -70,6 +70,16 @@ class Account extends Authenticatable
     public function players()
     {
         return $this->hasMany('App\Player');
+    }
+
+    public function playersWithTrash()
+    {
+        return $this->hasMany('App\Player')->withTrashed();
+    }
+
+    public function playersOnlyTrash()
+    {
+        return $this->hasMany('App\Player')->onlyTrashed();
     }
 
     /**

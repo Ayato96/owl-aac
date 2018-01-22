@@ -135,4 +135,22 @@ class PlayerController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function restore($id)
+    {
+        $player = Player::withTrashed()->find($id);
+        if (!$player) {
+            flash('Player not exist.')->error();
+            return redirect()->route('account.index');
+        }
+        $this->authorize('restore', $player);
+        $player->restore();
+        flash('Character restored.')->success()->important();
+        return redirect()->back();
+    }
+
 }

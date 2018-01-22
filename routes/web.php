@@ -11,12 +11,11 @@
 |
 */
 
-use Illuminate\Http\Request;
 
 Route::get('/', function () {
     $posts = \App\Post::all()->reverse();
     if ($posts->isEmpty()) {
-    	flash('There are no posts.')->error();
+        flash('There are no posts.')->error();
     }
     return view('pages.index')->with('posts', $posts);
 })->name('home');
@@ -28,6 +27,13 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('login', 'AuthController@login')->name('auth.login');
     Route::post('login', 'AuthController@authenticate')->name('auth.auth');
     Route::post('logout', 'AuthController@logout')->name('auth.logout');
+    Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+    Route::get('recovery', 'AuthController@showKeyRequestForm')->name('key.form');
+    Route::post('recovery', 'AuthController@showRecoveryForm')->name('key.recovery');
+    Route::post('recovery/password', 'AuthController@resetPassword')->name('key.recovery.password');
 });
 
 /**
@@ -39,6 +45,7 @@ Route::group(['prefix' => 'account'], function () {
     Route::post('create', 'AccountController@store')->name('account.store');
     Route::get('update/password', 'AccountController@changePassword')->name('account.change.password');
     Route::post('update/password', 'AccountController@updatePassword')->name('account.update.password');
+    Route::get('key/generate', 'AccountController@showKey')->name('account.show.key');
 });
 
 /**
@@ -51,6 +58,7 @@ Route::group(['prefix' => 'player'], function () {
     Route::get('edit/{id}', 'PlayerController@edit')->name('player.edit');
     Route::post('update/{id}', 'PlayerController@update')->name('player.update');
     Route::get('delete/{id}', 'PlayerController@destroy')->name('player.delete');
+    Route::get('restore/{id}', 'PlayerController@restore')->name('player.restore');
     Route::post('/', 'PlayerController@search')->name('player.search');
     Route::get('/{name}', 'PlayerController@show')->name('player.show');
 });
