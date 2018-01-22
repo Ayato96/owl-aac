@@ -1,28 +1,28 @@
 @extends('layouts.owl.app')
 
-@section('title', 'Guild Information')
-@section('header', 'Guild Information')
+@section('title', @trans('words.guild_information'))
+@section('header', @trans('words.guild_information'))
 
 @section('content')
 
 <div class="col-md-12 margin-bottom-10">
     <img src="http://fakeimg.pl/128x128/" alt="..." class="img-rounded" align="left">
     <div class="col-md-8">
-        <div>Name: {{ $guild->name }}</div>
+        <div>@lang('words.name'): {{ $guild->name }}</div>
         <div>Motd: {{ $guild->motd }}</div>
-        <div>Owner: {{ $guild->owner->name }}</div>
-        <div>Members: {{ $guild->players->count() }}</div>
-        <div>Creation date: {{ $guild->creationdata }}</div>
+        <div>@lang('words.owner'): {{ $guild->owner->name }}</div>
+        <div>@lang('words.members'): {{ $guild->players->count() }}</div>
+        <div>@lang('words.created'): {{ $guild->creationdata }}</div>
     </div>
 </div>
 <div class="col-md-12">
     <div class="panel panel-primary">
-        <div class="panel-heading">Members</div>
+        <div class="panel-heading">@lang('words.members')</div>
         <div class="panel-body">
             <table class="table table-hover table-bordered table-striped margin-bottom-5" id="membersList">
                 <tr>
                     <th>Rank</th>
-                    <th>Name</th>
+                    <th>@lang('words.name')</th>
                 </tr>
                 @foreach ($ranks as $rank)
                     <tr>
@@ -44,13 +44,13 @@
 @if (!$guild->invites->isEmpty())
     <div class="col-md-12">
         <div class="panel panel-primary">
-            <div class="panel-heading">Invites</div>
+            <div class="panel-heading">@lang('words.invites')</div>
             <div class="panel-body">
                 <table class="table table-hover table-bordered table-striped margin-bottom-5"">
                     <tr>
-                        <th>Name</th>
-                        <th>Vocation</th>
-                        <th>level</th>
+                        <th>@lang('words.name')</th>
+                        <th>@lang('words.vocation')</th>
+                        <th>@lang('words.level')</th>
                     </tr>
                     @foreach ($guild->invites as $player)
                         <tr>

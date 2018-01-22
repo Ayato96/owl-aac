@@ -1,14 +1,14 @@
 @extends('layouts.owl.app')
 
-@section('title', 'Change Password')
-@section('header', 'Change Password')
+@section('title', @trans('words.change_password'))
+@section('header', @trans('words.change_password'))
 
 @section('content')
 
 {!! Form::open(['route' => 'account.update.password', 'class'=>'form-horizontal', 'id' => 'editPassword']) !!}
 
 <div class="form-group{{ $errors->has('current_password') ? ' has-error' : '' }}">
-    {!! Form::label('current_password', 'Current password', ['class' => 'col-md-4 control-label']) !!}
+    {!! Form::label('current_password', @trans('words.current_password'), ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
         {!! Form::password('current_password', ['class' => 'form-control', 'minlength' => 7, 'maxlength' => 32, 'required']) !!}
         @if ($errors->has('current_password'))
@@ -20,7 +20,7 @@
 </div>
 
 <div class="form-group{{ $errors->has('new_password') ? ' has-error' : '' }}">
-    {!! Form::label('new_password', 'New password', ['class' => 'col-md-4 control-label']) !!}
+    {!! Form::label('new_password', @trans('words.new_password'), ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
         {!! Form::password('new_password', ['class' => 'form-control', 'minlength' => 7, 'maxlength' => 32, 'required']) !!}
         @if ($errors->has('new_password'))
@@ -32,7 +32,7 @@
 </div>
 
 <div class="form-group{{ $errors->has('new_password_confirmation') ? ' has-error' : '' }}">
-    {!! Form::label('new_password_confirmation', 'Confirm new password', ['class' => 'col-md-4 control-label']) !!}
+    {!! Form::label('new_password_confirmation', @trans('words.confirm_new_password'), ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
         {!! Form::password('new_password_confirmation', ['class' => 'form-control', 'minlength' => 7,'required']) !!}
         @if ($errors->has('new_password_confirmation'))
@@ -45,7 +45,7 @@
 
 <div class="form-group">
     <div class="col-md-6 col-md-offset-4">
-        {!! Form::submit('Change', ['class'=>'btn btn-primary']) !!}
+        {!! Form::submit(@trans('words.change'), ['class'=>'btn btn-primary']) !!}
     </div>
 </div>
 
