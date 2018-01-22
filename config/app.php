@@ -77,7 +77,7 @@ return [
     |
     */
 
-    'locale' => ENV('APP_LANG'),
+    'locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -186,6 +186,7 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Proengsoft\JsValidation\JsValidationServiceProvider::class,
         Jenssegers\Date\DateServiceProvider::class,
+        Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
     ],
 
     /*
@@ -241,6 +242,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
         'Date' => Jenssegers\Date\Date::class,
+        'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
     ],
 
 ];
