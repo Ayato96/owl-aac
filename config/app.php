@@ -187,6 +187,7 @@ return [
         Proengsoft\JsValidation\JsValidationServiceProvider::class,
         Jenssegers\Date\DateServiceProvider::class,
         Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
+        Shipu\Themevel\Providers\ThemevelServiceProvider::class,
     ],
 
     /*
@@ -243,6 +244,7 @@ return [
         'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
         'Date' => Jenssegers\Date\Date::class,
         'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
+        'Theme' => Shipu\Themevel\Facades\Theme::class,
     ],
 
 ];

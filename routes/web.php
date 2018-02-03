@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('teste', function() {
+        return view('pages.index');
+});
 /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
