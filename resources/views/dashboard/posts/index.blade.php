@@ -5,7 +5,6 @@
 
 @section('content')
 
-
 <div class="panel panel-default">
 	<div class="panel-body">
 		<table width="100%" class="table table-striped table-bordered table-hover" id="newsDataTable">
@@ -37,4 +36,20 @@
 	{{-- /.panel-body --}}
 </div>
 {{-- /.panel --}}
+@endsection
+
+@section('css')
+	<link href="{{ themes('css/dataTables.bootstrap.css')}}" rel="stylesheet">
+	<link href="{{ themes('css/dataTables.responsive.css')}}" rel="stylesheet">
+@endsection
+
+@section('js')
+<script src="{{ themes('js/jquery.dataTables.js') }}"></script>
+<script src="{{ themes('js/dataTables.bootstrap.js') }}"></script>
+<script src="{{ themes('js/dataTables.responsive.js') }}"></script>
+	<script>
+		$(document).ready(function(){
+            $('#newsDataTable').DataTable();
+        });
+	</script>
 @endsection

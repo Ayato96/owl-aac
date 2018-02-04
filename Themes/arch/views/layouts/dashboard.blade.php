@@ -10,9 +10,10 @@
     <title>OwlAdmin - @yield('title')</title>
 
     <link rel="stylesheet" type="text/css" href="{{ themes('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ themes('css/metisMenu.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ themes('css/sb-admin-2.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ themes('metisMenu.css') }}">
-    <link href="//cdnjs.cloudflare.com/ajax/libs/summernote/0.7.0/summernote.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ themes('css/font-awesome.min.css') }}">
+    @yield('css')
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -63,22 +64,12 @@
         <!-- /#wrapper -->
 
         <!-- JS -->
-        <script src="{{ URL::asset('assets/js/jquery-3.3.1.min.js') }}"></script>
-        <script src="{{ URL::asset('assets/js/bootstrap.min.js') }}"></script>
-        <script src="{{ URL::asset('assets/js/sb-admin-2.js') }}"></script>
-        <script src="{{ URL::asset('assets/js/metisMenu.js') }}"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/summernote/0.7.0/summernote.js"></script>
-        <script>
-            jQuery(document).ready(function() {
-                jQuery('#content').summernote({
-                    height: 250,
-                });
-            });
-
-            $(document).ready(function(){
-                $('#newsDataTable').DataTable();
-            });
-        </script>
+        <script src="{{ themes('js/jquery-3.3.1.min.js') }}"></script>
+        <script src="{{ themes('js/bootstrap.min.js') }}"></script>
+        <script src="{{ themes('js/metisMenu.js') }}"></script>
+        <script src="{{ themes('js/sb-admin-2.js') }}"></script>
+        @yield('js')
+        
         <script>
             $('#flash-overlay-modal').modal();
         </script>

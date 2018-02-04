@@ -54,5 +54,19 @@
 	{!! Form::close() !!}
 	<!-- /.row -->
 
+@endsection
 
-	@endsection
+@section('css')
+	<link href="//cdnjs.cloudflare.com/ajax/libs/summernote/0.7.0/summernote.css" rel="stylesheet">
+@endsection
+
+@section('js')
+	<script src="//cdnjs.cloudflare.com/ajax/libs/summernote/0.7.0/summernote.js"></script>
+	<script>
+		jQuery(document).ready(function() {
+			jQuery('#content').summernote({
+				height: 250,
+			});
+		});
+    </script>
+@endsection

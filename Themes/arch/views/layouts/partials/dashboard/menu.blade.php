@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{{ route('dashboard') }}">SB Admin v2.0</a>
+        <a class="navbar-brand" href="{{ route('dashboard.index') }}">SB Admin v2.0</a>
     </div>
     <!-- /.navbar-header -->
 
@@ -38,7 +38,7 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li>
-                    <a href="dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    <a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-newspaper-o fa-fw"></i> News<span class="fa arrow"></span></a>
@@ -55,7 +55,7 @@
                 <li>
                     <a href="{{ route('config.index') }}"><i class="fa fa-cogs fa-fw"></i> Configurations</a>
                 </li>
-                <li>
+                {{--  <li>
                     <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
                 </li>
                 <li>
@@ -111,7 +111,7 @@
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
-                </li>
+                </li>  --}}
             </ul>
         </div>
         <!-- /.sidebar-collapse -->

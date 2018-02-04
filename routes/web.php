@@ -73,7 +73,7 @@ Route::group([
      */
     Route::group(['prefix' => 'dashboard'], function () {
 
-        Route::get('/', 'AdminController@index')->name('dashboard');
+        Route::get('/', 'AdminController@index')->name('dashboard.index');
 
         /**
          * DashBoard Post Route Group
