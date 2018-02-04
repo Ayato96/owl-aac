@@ -30,7 +30,7 @@ class GuildController extends Controller
         if ($guilds->isEmpty()) {
             flash('There are no guilds yet.')->error();
         }
-        return view('pages.guilds.index')->with('guilds', $guilds);
+        return view('guilds.index')->with('guilds', $guilds);
     }
 
     /**
@@ -43,7 +43,7 @@ class GuildController extends Controller
             ->where('level', '>=', env('OWL_GUILD_LEVEL'))
             ->pluck('name', 'id')
             ->toArray();
-        return view('pages.guilds.create')->with('players', $players);
+        return view('guilds.create')->with('players', $players);
     }
 
     /**
@@ -71,7 +71,7 @@ class GuildController extends Controller
         if ($guild) {
             $ranks = $guild->rank->sortBy('pivot.rank_id')->groupBy('name');
 
-            return view('pages.guilds.show')
+            return view('guilds.show')
                 ->with([
                     'guild' => $guild,
                     'ranks' => $ranks,

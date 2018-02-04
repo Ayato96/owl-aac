@@ -31,7 +31,7 @@ class AccountController extends Controller
     {
         $account = Account::loggedin();
         $players = $account->players;
-        return view('pages.account.index')
+        return view('account.index')
             ->with([
                 'account' => $account,
                 'players' => $players
@@ -43,7 +43,7 @@ class AccountController extends Controller
      */
     public function create()
     {
-        return view('pages.account.create');
+        return view('account.create');
     }
 
     /**
@@ -62,7 +62,7 @@ class AccountController extends Controller
      */
     public function changePassword()
     {
-        return view('pages.account.password.edit');
+        return view('account.password.edit');
     }
 
     /**
@@ -85,7 +85,7 @@ class AccountController extends Controller
 
         $key = $this->keyGenerate();
         Account::loggedin()->update(['key' => $key]);
-        return view('pages.account.key')->with('key', $key);
+        return view('account.key')->with('key', $key);
     }
 
     public function keyGenerate()

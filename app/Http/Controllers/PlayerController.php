@@ -27,7 +27,7 @@ class PlayerController extends Controller
      */
     public function index()
     {
-        return view('pages.players.search');
+        return view('players.search');
     }
 
     /**
@@ -41,7 +41,7 @@ class PlayerController extends Controller
                 ->important();
             return redirect()->back();
         }
-        return view('pages.players.create');
+        return view('players.create');
     }
 
     /**
@@ -64,7 +64,7 @@ class PlayerController extends Controller
     {
         $player = Player::whereName($name)->first();
         if ($player) {
-            return view('pages.players.show')->with([
+            return view('players.show')->with([
                 'player' => $player,
             ]);
         }
@@ -99,7 +99,7 @@ class PlayerController extends Controller
             return redirect()->route('account.index');
         }
         $this->authorize('update', $player);
-        return view('pages.players.edit')->with(compact('player'));
+        return view('players.edit')->with(compact('player'));
     }
 
     /**
