@@ -6,21 +6,21 @@
     </ol>
     <div class="carousel-inner">
         <div class="item active">
-            <img src="{{ asset('assets/images/carousel/image1.png') }}" alt="First slide">
+            <img src="{{ themes('img/carousel/image1.png') }}" alt="First slide">
             <div class="carousel-caption">
                 <h3>First slide</h3>
                 <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
             </div>
         </div>
         <div class="item">
-            <img src="{{ asset('assets/images/carousel/image2.png') }}" alt="Second slide">
+            <img src="{{ themes('img/carousel/image2.png') }}" alt="Second slide">
             <div class="carousel-caption">
                 <h3>Second slide</h3>
                 <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
             </div>
         </div>
         <div class="item">
-            <img src="{{ asset('assets/images/carousel/image3.png') }}" alt="Third slide">
+            <img src="{{ themes('img/carousel/image3.png') }}" alt="Third slide">
             <div class="carousel-caption">
                 <h3>Third slide</h3>
                 <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
