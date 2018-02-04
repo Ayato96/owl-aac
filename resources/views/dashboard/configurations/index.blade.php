@@ -1,4 +1,4 @@
-@extends('layouts.dashboard.app')
+@extends('layouts.dashboard')
 
 @section('title', 'Change Configurations')
 @section('header', 'Change Configurations')
