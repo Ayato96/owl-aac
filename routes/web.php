@@ -18,13 +18,7 @@ Route::group([
     'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
 ], function () {
 
-    Route::get('/', function () {
-        $posts = \App\Post::all()->reverse();
-        if ($posts->isEmpty()) {
-            flash('There are no posts.')->error();
-        }
-        return view('pages.index')->with('posts', $posts);
-    })->name('home');
+    Route::get('/', 'HomeController@index')->name('home');
 
     /**
      * Auth Route Group
