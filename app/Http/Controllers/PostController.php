@@ -29,7 +29,7 @@ class PostController extends Controller
         if ($posts->isEmpty()) {
             flash('there are no posts.')->error();
         }
-        return view('pages.dashboard.posts.index')->with('posts', $posts);
+        return view('dashboard.posts.index')->with('posts', $posts);
     }
 
     /**
@@ -38,7 +38,7 @@ class PostController extends Controller
     public function create()
     {
         $players = \App\Account::loggedin()->players()->pluck('name', 'id')->toArray();
-        return view('pages.dashboard.posts.create')->with('players', $players);
+        return view('dashboard.posts.create')->with('players', $players);
     }
 
     /**
@@ -70,7 +70,7 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $players = \App\Account::loggedin()->players()->pluck('name', 'id')->toArray();
-        return view('pages.dashboard.posts.edit')->with(['post' => $post, 'players' => $players]);
+        return view('dashboard.posts.edit')->with(['post' => $post, 'players' => $players]);
     }
 
     /**

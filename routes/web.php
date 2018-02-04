@@ -11,19 +11,14 @@
 |
 */
 
+
 /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
 ], function () {
 
-    Route::get('/', function () {
-        $posts = \App\Post::all()->reverse();
-        if ($posts->isEmpty()) {
-            flash('There are no posts.')->error();
-        }
-        return view('pages.index')->with('posts', $posts);
-    })->name('home');
+    Route::get('/', 'HomeController@index')->name('home');
 
     /**
      * Auth Route Group
@@ -78,7 +73,7 @@ Route::group([
      */
     Route::group(['prefix' => 'dashboard'], function () {
 
-        Route::get('/', 'AdminController@index')->name('dashboard');
+        Route::get('/', 'AdminController@index')->name('dashboard.index');
 
         /**
          * DashBoard Post Route Group

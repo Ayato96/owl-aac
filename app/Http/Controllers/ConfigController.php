@@ -15,7 +15,7 @@ class ConfigController extends Controller
      * @return $this
      */
     public function index(){
-        return view('pages.dashboard.configurations.index')->with('dir', Setting::get('Server.dir'));
+        return view('dashboard.configurations.index')->with('dir', Setting::get('Server.dir'));
     }
 
     /**

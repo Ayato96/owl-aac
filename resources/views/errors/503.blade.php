@@ -1,4 +1,4 @@
-@extends('layouts.owl.errors')
+@extends('layouts.errors')
 
 @section('title', 'Be right back.')
 
