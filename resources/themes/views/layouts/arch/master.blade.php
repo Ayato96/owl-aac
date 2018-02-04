@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>{{ Setting::get('Server.Name') }} arch - @yield('title')</title>
+	<title>{{ Setting::get('Server.Name') }} - @yield('title')</title>
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/css/owl.css') }}">
 	@yield('css')
 </head>
@@ -10,12 +10,12 @@
 		<div class="row">
 			{{-- HEADER --}}
 			<div class="col-md-10 col-md-offset-1 margin-bottom-10">
-				@include('layouts.partials.header')
+				@include('layouts.owl.header')
 			</div> {{-- ENDHEADER --}}
 
 			{{-- MENU --}}
 			<div class="col-md-2 col-md-offset-1">
-				@include('layouts.partials.left')
+				@include('layouts.owl.menu.left')
 			</div> {{-- ENDMENU --}}
 
 			{{-- CONTENT --}}
@@ -33,7 +33,7 @@
 
 			{{-- RIGHTSIDEBAR --}}
 			<div class="col-md-2">
-				@include('layouts.partials.right')
+				@include('layouts.owl.menu.right')
 			</div>{{-- ENDRIGHTSIDEBAR --}}
 		</div> {{-- ENDROW --}}
 	</div>{{-- ENDCONTAINER --}}

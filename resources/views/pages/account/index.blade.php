@@ -1,4 +1,4 @@
-@extends('layouts.owl.app')
+@extends('layouts.master')
 
 @section('title', @trans('words.account_management'))
 @section('header', @trans('words.account_management'))

@@ -12,7 +12,7 @@
 */
 
 Route::get('teste', function() {
-        return view('pages.index');
+        return view('pages.index')->with('posts',\App\Post::all());
 });
 /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
 Route::group([

@@ -9,6 +9,7 @@ use Exception;
 use Thetispro\Setting\Facades\Setting;
 use Hash;
 use Auth;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,17 +20,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('layouts.owl.app', function ($view) {
-            $playerRank = DB::table('players')
-                ->where([
-                    ['group_id', '<', 4],
-                    ['deletion', '=', null]
-                ])
+        View::share(
+            'playerRank', \App\Player::select('name' , 'level')
+                ->where('group_id', '<', 4)
                 ->orderBy('experience', 'desc')
-                ->limit(5)
-                ->get();
-            $view->with('playerRank', $playerRank);
-        });
+                ->take(5)
+                ->get());
 
         /**
          * VALIDATIONS FOR CREATEPLAYER

@@ -1,4 +1,4 @@
-@extends('layouts.owl.app')
+@extends('layouts.master')
 
 @section('title', @trans('words.player_information').' - '.$player['name'])
 @section('header', @trans('words.player_information').' - '.$player['name'])

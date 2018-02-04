@@ -1,4 +1,4 @@
-@extends('layouts.owl.app')
+@extends('layouts.master')
 
 @section('title', 'Recovery Account')
 @section('header', 'Recovery Account')
