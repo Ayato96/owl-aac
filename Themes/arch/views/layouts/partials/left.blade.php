@@ -11,7 +11,7 @@
                 </div>
                 <div class="panel-body">
                     <div>
-                        <a href="{{ route('dashboard') }}">Dashboard</a>
+                        <a href="{{ route('dashboard.index') }}">Dashboard</a>
                     </div>
                 </div>
             </div>
