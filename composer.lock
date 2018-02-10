@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a65c373e52357ab79e17bbbf88888f3b",
+    "content-hash": "fafae73ec28e9fa8b2de4765850a1de9",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -363,20 +363,20 @@
         },
         {
             "name": "doctrine/inflector",
-            "version": "v1.3.0",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/inflector.git",
-                "reference": "5527a48b7313d15261292c149e55e26eae771b0a"
+                "reference": "e11d84c6e018beedd929cff5220969a3c6d1d462"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/inflector/zipball/5527a48b7313d15261292c149e55e26eae771b0a",
-                "reference": "5527a48b7313d15261292c149e55e26eae771b0a",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/e11d84c6e018beedd929cff5220969a3c6d1d462",
+                "reference": "e11d84c6e018beedd929cff5220969a3c6d1d462",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1"
+                "php": "^7.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.2"
@@ -384,7 +384,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.3.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
@@ -426,7 +426,7 @@
                 "singularize",
                 "string"
             ],
-            "time": "2018-01-09T20:05:19+00:00"
+            "time": "2017-07-22T12:18:28+00:00"
         },
         {
             "name": "doctrine/lexer",
@@ -1392,26 +1392,26 @@
         },
         {
             "name": "proengsoft/laravel-jsvalidation",
-            "version": "2.1.0",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/proengsoft/laravel-jsvalidation.git",
-                "reference": "ca03bf933fa021a950b5bc6065534225c20f902c"
+                "reference": "e3e2e8bcb36617d3cd095f1877044c7721841997"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/proengsoft/laravel-jsvalidation/zipball/ca03bf933fa021a950b5bc6065534225c20f902c",
-                "reference": "ca03bf933fa021a950b5bc6065534225c20f902c",
+                "url": "https://api.github.com/repos/proengsoft/laravel-jsvalidation/zipball/e3e2e8bcb36617d3cd095f1877044c7721841997",
+                "reference": "e3e2e8bcb36617d3cd095f1877044c7721841997",
                 "shasum": ""
             },
             "require": {
-                "illuminate/config": "5.4.*|5.5.*",
-                "illuminate/contracts": "5.4.*|5.5.*",
-                "illuminate/http": "5.4.*|5.5.*",
-                "illuminate/support": "5.4.*|5.5.*",
-                "illuminate/translation": "5.4.*|5.5.*",
-                "illuminate/validation": "5.4.*|5.5.*",
-                "illuminate/view": "5.4.*|5.5.*",
+                "illuminate/config": "5.4.*|5.5.*|5.6.*",
+                "illuminate/contracts": "5.4.*|5.5.*|5.6.*",
+                "illuminate/http": "5.4.*|5.5.*|5.6.*",
+                "illuminate/support": "5.4.*|5.5.*|5.6.*",
+                "illuminate/translation": "5.4.*|5.5.*|5.6.*",
+                "illuminate/validation": "5.4.*|5.5.*|5.6.*",
+                "illuminate/view": "5.4.*|5.5.*|5.6.*",
                 "php": ">=5.6.4"
             },
             "require-dev": {
@@ -1462,7 +1462,7 @@
                 "validation",
                 "validator"
             ],
-            "time": "2017-08-30T20:59:15+00:00"
+            "time": "2018-02-09T10:42:56+00:00"
         },
         {
             "name": "psr/http-message",
