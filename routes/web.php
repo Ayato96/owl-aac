@@ -66,7 +66,7 @@ Route::group([
     /**
      * Post Route Group
      */
-    Route::get('post/{id}', 'NewsController@show')->name('post.show');
+    //Route::get('post/{id}', 'NewsController@show')->name('post.show');
 
     /**
      * DashBoard Route Group
@@ -106,17 +106,3 @@ Route::group([
     });
 });
 
-/**
-* Filemanager Route Group
- */
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/laravel-filemanager', '\Unisharp\Laravelfilemanager\controllers\LfmController@show');
-    Route::post('/laravel-filemanager/upload', '\Unisharp\Laravelfilemanager\controllers\UploadController@upload');
-});
-
-
-
-/*
-guild - working in
-news
-*/
