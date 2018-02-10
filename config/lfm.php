@@ -24,7 +24,7 @@ return [
     */
 
     // If true, private folders will be created for each signed-in user.
-    'allow_multi_user' => true,
+    'allow_multi_user' => false,
     // If true, share folder will be created when allow_multi_user is true.
     'allow_share_folder' => true,
 
@@ -78,9 +78,9 @@ return [
     'alphanumeric_directory' => false,
 
     // If true, the uploading file's size will be verified for over than max_image_size/max_file_size.
-    'should_validate_size' => false,
+    'should_validate_size' => true,
 
-    'max_image_size' => 50000,
+    'max_image_size' => 5000,
     'max_file_size' => 50000,
 
     // If true, the uploading file's mime type will be valid in valid_image_mimetypes/valid_file_mimetypes.
