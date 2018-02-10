@@ -188,6 +188,8 @@ return [
         Jenssegers\Date\DateServiceProvider::class,
         Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
         Shipu\Themevel\Providers\ThemevelServiceProvider::class,
+        Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
     ],
 
     /*
@@ -245,6 +247,7 @@ return [
         'Date' => Jenssegers\Date\Date::class,
         'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
         'Theme' => Shipu\Themevel\Facades\Theme::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

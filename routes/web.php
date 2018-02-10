@@ -66,7 +66,7 @@ Route::group([
     /**
      * Post Route Group
      */
-    Route::get('post/{id}', 'NewsController@show')->name('post.show');
+    //Route::get('post/{id}', 'NewsController@show')->name('post.show');
 
     /**
      * DashBoard Route Group
@@ -106,11 +106,3 @@ Route::group([
     });
 });
 
-
-
-
-
-/*
-guild - working in
-news
-*/
