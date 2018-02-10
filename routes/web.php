@@ -106,7 +106,13 @@ Route::group([
     });
 });
 
-
+/**
+* Filemanager Route Group
+ */
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/laravel-filemanager', '\Unisharp\Laravelfilemanager\controllers\LfmController@show');
+    Route::post('/laravel-filemanager/upload', '\Unisharp\Laravelfilemanager\controllers\UploadController@upload');
+});
 
 
 
