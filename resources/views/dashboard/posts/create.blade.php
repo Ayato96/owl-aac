@@ -24,7 +24,7 @@
 	<div class="form-group {{ $errors->has('content') ? ' has-error' : '' }}">
 		{!! Form::label('content', 'Content', ['class' => 'col-md-4 control-label']) !!}
 		<div class="col-md-6">
-        {{ Form::textarea('content', NULL, ['class' => 'form-control my-editor', 'placeholder' => 'Content', 'id' => 'content', 'required']) }}
+        {{ Form::textarea('content', NULL, ['class' => 'form-control my-editor', 'placeholder' => 'Content', 'id' => 'content']) }}
 			@if ($errors->has('content'))
 			<span class="help-block">
 				<strong>{{ $errors->first('content') }}</strong>

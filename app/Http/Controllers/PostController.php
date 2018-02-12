@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Post;
+use App\Http\Requests\CreatePost;
 
 /**
  * Class PostController
@@ -45,7 +46,7 @@ class PostController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(CreatePost $request)
     {
         Post::create($request->only(['title', 'content', 'player_id']));
         flash()->overlay('Adicionado com sucesso!');

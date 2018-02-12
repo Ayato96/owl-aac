@@ -13,7 +13,7 @@ class CreatePost extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class CreatePost extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'max:40|required',
+            'content' => 'required',
+            'player_id' => 'required',
         ];
     }
 }
