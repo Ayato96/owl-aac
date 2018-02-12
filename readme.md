@@ -5,7 +5,7 @@
 What are you waiting for? Something amazing, I guess.
 </p>
 
-#Otserv Website with Laravel
+# Otserv Website with Laravel
 
 This application is in development, if you want to help fork it and make a pull request.
 Now no have anything ready, but i'm studing to make some things beautiful. ;)
