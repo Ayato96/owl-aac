@@ -15,7 +15,7 @@
 /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
-    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'installed' ]
 ], function () {
 
     Route::get('/', 'HomeController@index')->name('home');
@@ -106,3 +106,9 @@ Route::group([
     });
 });
 
+/**
+ * Installer Routes
+ */
+Route::get('install', 'InstallerController@index')->name('install.index');
+Route::post('install', 'InstallerController@install')->name('install.post');
+Route::get('install/finish', 'InstallerController@finish')->name('install.finish');
