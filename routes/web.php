@@ -91,7 +91,7 @@ Route::group([
          */
         Route::group(['prefix' => 'config'], function () {
             Route::get('/', 'ConfigController@index')->name('config.index');
-            Route::post('set', 'ConfigController@set')->name('config.set');
+            Route::post('set/path', 'ConfigController@setPath')->name('config.set.path');
         });
     });
 
