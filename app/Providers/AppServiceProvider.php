@@ -4,12 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\DB;
-use Exception;
 use Thetispro\Setting\Facades\Setting;
+use Illuminate\Support\Facades\View;
 use Hash;
 use Auth;
-use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,12 +18,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::share(
-            'playerRank', \App\Player::select('name' , 'level')
+        if (Setting::get('server.installed')) {
+            View::share(
+                'playerRank', \App\Player::select('name', 'level')
                 ->where('group_id', '<', 4)
                 ->orderBy('experience', 'desc')
                 ->take(5)
-                ->get());
+                ->get()
+            );
+        }
 
         /**
          * VALIDATIONS FOR CREATEPLAYER
@@ -35,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
          * Banned words
          */
         Validator::extend('not_contains', function ($attribute, $value, $parameters) {
-            $words = array('fuck', 'caralho', 'fdp');
+            $words = array('fuck', 'caralho', 'fdp', 'god', 'gm', 'adm', 'cm', 'admin');
             foreach ($words as $word) {
                 if (stripos($value, $word) !== false) return false;
             }
@@ -76,7 +77,7 @@ class AppServiceProvider extends ServiceProvider
             /**
              * checks to see if there is a monster with the same name
              */
-            foreach (Setting::get('Server.Monsters') as $monsterName) {
+            foreach (Setting::get('server.monsters') as $monsterName) {
                 if (strcasecmp($value, $monsterName) == 0) return false;
             }
             return true;
@@ -126,6 +127,16 @@ class AppServiceProvider extends ServiceProvider
                 if ($player->id == $value) {
                     return true;
                 }
+            }
+            return false;
+        });
+
+        /**
+         * Check if path have config.lua
+         */
+        Validator::extend('check_config_lua', function ($attribute, $value, $parameters, $validator) {
+            if (file_exists($value . 'config.lua')) {
+                return true;
             }
             return false;
         });
