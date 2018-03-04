@@ -105,6 +105,7 @@ return [
     'not_contains'              => 'The :attribute must not contain banned words.',
     'character_name'            => 'The :attribute contains illegal letters or reserved words.',
     'check_character_account'   => 'This :attribute does not belong to you.',
+    'check_config_lua'          => 'This :attribute does not have config.lua.',
 
     'custom' => [
         'attribute-name' => [

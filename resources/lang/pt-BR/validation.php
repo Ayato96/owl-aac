@@ -105,6 +105,7 @@ return [
     'not_contains'              => 'O :attribute não deve conter palavras banidas.',
     'character_name'            => 'O :attribute contém letras ilegais ou palavras reservadas.',
     'check_character_account'   => 'Esse :attribute não pertence a você.',
+    'check_config_lua'          => 'Esse :attribute não tem um config.lua.',
 
     'custom'               => [
         'attribute-name' => [

@@ -50,7 +50,7 @@
                     <fieldset>
                         <h4>Path:</h4>
                         <div class="form-group">
-                            <input type="text" name="path" placeholder="/home/user/otx/ or C:/otx" class="form-control">
+                            <input type="text" name="path" placeholder="/home/user/otx/ or C:/otx/" class="form-control">
                         </div>
                         <div class="f1-buttons">
                             <button type="button" class="btn btn-next">Next</button>
