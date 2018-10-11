@@ -188,7 +188,7 @@ return [
         Jenssegers\Date\DateServiceProvider::class,
         Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
         Shipu\Themevel\Providers\ThemevelServiceProvider::class,
-        Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
+        UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Orchestra\Parser\XmlServiceProvider::class,
     ],
