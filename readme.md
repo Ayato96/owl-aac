@@ -24,8 +24,7 @@ Guild: working in. but have a functional create page and list guilds page.
 ## Requirements
 + composer
 + php: ^7.1 
-+ pear: ^1.4.0
-+ php exts: exif | fileinfo | [php-lua](http://pecl.php.net/package/lua)
++ php exts: exif | fileinfo
 
 ## Installation
 Run in terminal:
