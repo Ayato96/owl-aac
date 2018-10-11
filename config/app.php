@@ -151,7 +151,6 @@ return [
         Illuminate\Filesystem\FilesystemServiceProvider::class,
         Illuminate\Foundation\Providers\FoundationServiceProvider::class,
         //Illuminate\Hashing\HashServiceProvider::class,
-        App\Providers\ShaHashServiceProvider::class,
         Illuminate\Mail\MailServiceProvider::class,
         Illuminate\Notifications\NotificationServiceProvider::class,
         Illuminate\Pagination\PaginationServiceProvider::class,
@@ -163,24 +162,25 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        
         /*
-         * Package Service Providers...
-         */
-
-
+        * Package Service Providers...
+        */
+        
+        
         /*
-         * Application Service Providers...
-         */
+        * Application Service Providers...
+        */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        
         /*
-         * Owl Providers...
-         */
+        * Owl Providers...
+        */
+        App\Providers\ShaHashServiceProvider::class,
         Thetispro\Setting\SettingServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
@@ -190,8 +190,9 @@ return [
         Shipu\Themevel\Providers\ThemevelServiceProvider::class,
         Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Orchestra\Parser\XmlServiceProvider::class,
     ],
-
+    
     /*
     |--------------------------------------------------------------------------
     | Class Aliases
@@ -248,6 +249,7 @@ return [
         'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
         'Theme' => Shipu\Themevel\Facades\Theme::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'XmlParser' => Orchestra\Parser\Xml\Facade::class,
     ],
 
 ];

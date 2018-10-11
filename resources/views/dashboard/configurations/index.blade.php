@@ -7,12 +7,12 @@
 
 {{-- PANELS --}}
 <div class="row">
-    {!! Form::open(['route' => 'config.set', 'class'=>'form-horizontal']) !!}
+    {!! Form::open(['route' => 'config.set.path', 'class'=>'form-horizontal']) !!}
 
     <div class="form-group{{ $errors->has('path') ? ' has-error' : '' }}">
     {!! Form::label('path', 'Path', ['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
-        {!! Form::text('path', $dir, ['class' => 'form-control', 'maxlength' => 40, 'required', 'autofocus']) !!}
+        {!! Form::text('path', $path, ['class' => 'form-control', 'maxlength' => 40, 'required', 'autofocus']) !!}
         @if ($errors->has('path'))
             <span class="help-block">
             <strong>{{ $errors->first('path') }}</strong>

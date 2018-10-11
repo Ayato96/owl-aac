@@ -6,16 +6,16 @@ What are you waiting for? Something amazing, I guess.
 </p>
 
 # Otserv Website with Laravel
-
 This application is in development.
 
 If you want to help fork it and make a pull request.
 
-[Trello](https://trello.com/b/odfQfYTc/dev) | [Discord](https://discord.gg/Zc9SXzr)
+[Trello](https://trello.com/b/odfQfYTc/dev) | [Discord](https://discord.gg/Zc9SXzr) | [Telegram](https://t.me/joinchat/CXr9YRFxqDa4FPo97SmB0Q)
 
 ## What works?
+Installer: working in.
 
-Account: Create, change password.
+Account: Create, change password, make recovery key, recovery by key, recovery by email.
 
 Player: Create, delete, player information page, player search.
 
@@ -24,12 +24,11 @@ Guild: working in. but have a functional create page and list guilds page.
 ## Requirements
 + composer
 + php: ^7.1 
-+ php exts: exif | fileinfo
++ pear: ^1.4.0
++ php exts: exif | fileinfo | [php-lua](http://pecl.php.net/package/lua)
 
 ## Installation
-
 Run in terminal:
-
 
 <kbd>$ composer install</kbd>
 
@@ -38,6 +37,3 @@ Run in terminal:
 <kbd>$ php artisan key:generate</kbd>
 
 
-**Remember to modify .env file with your database credentials**
-
-<kbd>$ php artisan migrate</kbd>

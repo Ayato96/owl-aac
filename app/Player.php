@@ -145,7 +145,7 @@ class Player extends Model
      */
     public function getVocationAttribute($value)
     {
-        foreach (Setting::get('Server.Vocations') as $vocation) {
+        foreach (Setting::get('server.vocations') as $vocation) {
             if ($value == $vocation['id']) return $vocation['name'];
         }
     }
@@ -170,17 +170,6 @@ class Player extends Model
 
     /**
      * @param $value
-     * @return mixed
-     */
-    public function getWorldIdAttribute($value)
-    {
-        foreach (Setting::get('Server.Worlds') as $world) {
-            if ($value == $world['id']) return $world['name'];
-        }
-    }
-
-    /**
-     * @param $value
      * @return string
      */
     public function getLastloginAttribute($value)
@@ -198,7 +187,7 @@ class Player extends Model
      */
     public function getTown()
     {
-        foreach (Setting::get('Server.Towns') as $town) {
+        foreach (Setting::get('server.towns') as $town) {
             if ($this->attributes['town_id'] == $town['id']) return $town['name'];
         }
     }

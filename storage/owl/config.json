@@ -1,0 +1,67 @@
+{
+    "server": {
+        "installed": false,
+        "name": null,
+        "path": null,
+        "vocations": null,
+        "towns": [
+            {
+                "id": "1",
+                "name": "Venore"
+            },
+            {
+                "id": "2",
+                "name": "Thais"
+            },
+            {
+                "id": "3",
+                "name": "Kazordoon"
+            },
+            {
+                "id": "4",
+                "name": "Carlin"
+            },
+            {
+                "id": "5",
+                "name": "Ab'Dendriel"
+            },
+            {
+                "id": "6",
+                "name": "Change This"
+            },
+            {
+                "id": "7",
+                "name": "Liberty Bay"
+            },
+            {
+                "id": "8",
+                "name": "Port Hope"
+            },
+            {
+                "id": "9",
+                "name": "Change This"
+            },
+            {
+                "id": "10",
+                "name": "Darashia"
+            },
+            {
+                "id": "11",
+                "name": "Edron"
+            },
+            {
+                "id": "12",
+                "name": "Svargrond"
+            },
+            {
+                "id": "13",
+                "name": "Yalahar"
+            },
+            {
+                "id": "14",
+                "name": "Farmine"
+            }
+        ],
+        "monsters": null
+    }
+}

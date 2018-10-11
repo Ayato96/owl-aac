@@ -33,7 +33,7 @@ class CreateAccount extends FormRequest
     public function attributes()
     {
         return [
-            'name' => 'Account Name',
+            'name' => __('words.account_name'),
         ];
     }
 }
