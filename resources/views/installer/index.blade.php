@@ -23,6 +23,7 @@
     <div class="container">
 
         <div class="row">
+                @include('flash::message')
             <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 form-box">
                 <form role="form" action="{{route('install.post')}}" method="post" class="f1" id="install">
                     {{ csrf_field() }}

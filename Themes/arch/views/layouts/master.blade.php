@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>{{ Setting::get('Server.Name') }} arch - @yield('title')</title>
+	<title>{{ Setting::get('server.name') }} - @yield('title')</title>
 	<link rel="stylesheet" type="text/css" href="{{ themes('css/bootstrap.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ themes('css/bootstrap-theme.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ themes('css/arch.css') }}">

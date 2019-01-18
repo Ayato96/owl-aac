@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Traits\SetEnvTrait;
 use App\Http\Requests\Install;
 use App\Account;
 use XmlParser;
@@ -11,6 +10,9 @@ use Artisan;
 use Lua;
 use Auth;
 
+use App\Http\Traits\SetEnvTrait;
+use App\Http\Traits\ParseLuaTrait;
+
 /**
  * Class InstallerController
  * @package App\Http\Controllers
@@ -18,6 +20,7 @@ use Auth;
 class InstallerController extends Controller
 {
     use SetEnvTrait;
+    use ParseLuaTrait;
 
     /**
      * InstallerController constructor.
@@ -41,18 +44,23 @@ class InstallerController extends Controller
      */
     public function install(Install $request)
     {
-
+        // Save path in storage
         Setting::set('server.path', $request->path);
 
-        $lua = new Lua(Setting::get('server.path') . 'config.lua');
+        // Get Config from lua file
+        $configLua = $this->parseLua(Setting::get('server.path') . 'config.lua');
 
-        Setting::set('server.name', $lua->serverName);
+        // Save saver name in storage        
+        Setting::set('server.name', $configLua['serverName']);
 
-        $this->setEnvironmentValue('DB_DATABASE', $lua->mysqlDatabase);
-        $this->setEnvironmentValue('DB_USERNAME', $lua->mysqlUser);
-        $this->setEnvironmentValue('DB_PASSWORD', $lua->mysqlPass);
+        // Set database values in dotenv
+        $this->setEnvironmentValue('DB_DATABASE', $configLua['mysqlDatabase']);
+        $this->setEnvironmentValue('DB_USERNAME', $configLua['mysqlUser']);
+        $this->setEnvironmentValue('DB_PASSWORD', $configLua['mysqlPass']);
 
+        // Vocations in storage  
         $xml = XmlParser::load(Setting::get('server.path') . 'data/XML/vocations.xml');
+
         $vocationsXML = $xml->parse([
             'vocations' => ['uses' => 'vocation[::id,::name]'],
         ]);
@@ -65,6 +73,7 @@ class InstallerController extends Controller
         }
         Setting::set('server.vocations', $vocations);
 
+        // Save monsters in storage
         $xml = XmlParser::load(Setting::get('server.path') . 'data/monster/monsters.xml');
         $monstersXML = $xml->parse([
             'monsters' => ['uses' => 'monster[::name]'],
@@ -75,6 +84,7 @@ class InstallerController extends Controller
         }
         Setting::set('server.monsters', $monsters);
 
+        // store accountname and pass in session for create account
         session(['accountName' => $request->name]);;
         session(['accountPass' => $request->password]);
 
@@ -86,9 +96,10 @@ class InstallerController extends Controller
      */
     public function finish()
     {
-
+        // force call migrate for run migrations
         Artisan::call('migrate', array('--force' => true));
 
+        // create admin account
         $account = Account::updateOrCreate(
             ['name' => session('accountName')],
             ['password' => session('accountPass')]
@@ -96,13 +107,17 @@ class InstallerController extends Controller
         $account->is_admin = true;
         $account->save();
 
+        // Login with Admin account
         Auth::login($account);
 
+        // forget session variables
         session()->forget('accountName');
         session()->forget('accountPass');
 
+        // Save install status in storare
         Setting::set('server.installed', true);
 
+        // Redirect to home page
         return redirect()->route('home');
     }
 
