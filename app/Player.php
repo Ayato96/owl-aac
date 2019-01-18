@@ -56,6 +56,8 @@ class Player extends Model
         'balance' => 0,
         'group_id' => 1,
         'cap' => 450,
+        'comment' => '',
+        'signature' => '',
     );
 
     /**

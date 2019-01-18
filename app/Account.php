@@ -30,6 +30,17 @@ class Account extends Authenticatable
     /**
      * @var array
      */
+    protected $attributes = array(
+        'vote' => 0,
+        'vip_time' => 0,
+        'birth_date' => '',
+        'gender' => '',
+        'authToken' => '',
+    );
+
+    /**
+     * @var array
+     */
     protected $fillable = [
         'name', 'email', 'password', 'key',
     ];
