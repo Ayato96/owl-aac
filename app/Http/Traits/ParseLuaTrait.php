@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * @author Ivens Pontes <ivenscardoso@hotmail.com>
+ * 
+ * This code is a modified version of the configLua.php from GesiorAAC
+ * @see https://github.com/gesior/Gesior2012/blob/master/classes/configlua.php
+ */
+
 namespace App\Http\Traits;
 
 use File;
