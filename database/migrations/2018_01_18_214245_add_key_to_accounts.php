@@ -14,7 +14,9 @@ class AddKeyToAccounts extends Migration
     public function up()
     {
         Schema::table('accounts', function (Blueprint $table) {
-            $table->string('key', 20)->nullable();
+            if (!Schema::hasColumn('players', 'description')) {
+                $table->string('key', 20)->nullable();
+            } 
         });
     }
 
@@ -25,8 +27,6 @@ class AddKeyToAccounts extends Migration
      */
     public function down()
     {
-        Schema::table('accounts', function (Blueprint $table) {
-            $table->dropColumn('key');
-        });
+        //
     }
 }

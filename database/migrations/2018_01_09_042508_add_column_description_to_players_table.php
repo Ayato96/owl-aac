@@ -14,7 +14,9 @@ class AddColumnDescriptionToPlayersTable extends Migration
     public function up()
     {
         Schema::table('players', function (Blueprint $table) {
-            $table->string('description', 200)->nullable();
+            if (!Schema::hasColumn('players', 'description')) {
+                $table->string('description', 200)->nullable();
+            } 
         });
     }
 
@@ -25,8 +27,6 @@ class AddColumnDescriptionToPlayersTable extends Migration
      */
     public function down()
     {
-        Schema::table('players', function (Blueprint $table) {
-            $table->dropColumn('description');
-        });
+        //
     }
 }
