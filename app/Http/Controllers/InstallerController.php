@@ -53,6 +53,11 @@ class InstallerController extends Controller
         // Save saver name in storage        
         Setting::set('server.name', $configLua['serverName']);
 
+        // Save some informations for use in owlaac login
+        Setting::set('server.freePremium', $configLua['freePremium']);
+        Setting::set('server.ip', $configLua['ip']);
+        Setting::set('server.gameProtocolPort', $configLua['gameProtocolPort']);
+
         // Set database values in dotenv
         $this->setEnvironmentValue('DB_DATABASE', $configLua['mysqlDatabase']);
         $this->setEnvironmentValue('DB_USERNAME', $configLua['mysqlUser']);

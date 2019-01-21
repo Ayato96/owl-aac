@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\ConfigLuaController as ConfigLua;
 use Carbon\Carbon;
 use App\Account;
+use Setting;
 
 class ApiLoginController extends Controller
 {
@@ -24,7 +24,6 @@ class ApiLoginController extends Controller
         /**
          * VARIABLES
          */
-        $configLua = (new ConfigLua)->getAll();
         $lastLogin=0;
         
         /**
@@ -74,25 +73,40 @@ class ApiLoginController extends Controller
             'session' => array(
                 "sessionkey" => $requestJson['accountname'] . "\n" . $requestJson['password'],
                 "lastlogintime" => $lastLogin,
-            "ispremium" => ($configLua['freePremium'] ? true : ($account->premdays > 0 ? true : false)),
-            "premiumuntil" => Carbon::now()->addDays($account->premdays)->timestamp,
-            "status" => "active"
-        ),
+                "ispremium" => (Setting::get('server.freePremium') ? true : ($account->premdays > 0 ? true : false)),
+                "premiumuntil" => Carbon::now()->addDays($account->premdays)->timestamp,
+                "status" => "active",
+                "fpstracking" => false,
+                "isreturner" => true,
+                "returnernotification" => false,
+                "showrewardnews" => false
+            ),
             'playdata' => array(
                 'worlds' => array(
                     0 => array(
                         "id" => 0,
-                        "name" => $configLua['serverName'],
-                        "externaladdress" => $configLua['ip'],
-                        "externalport" => $configLua['gameProtocolPort'],
+                        "name" => Setting::get('server.name'),
+                        "externaladdress" => Setting::get('server.ip'),
+                        "externalport" => Setting::get('server.gameProtocolPort'),
                         "previewstate" => 0,
                         "location" => "BRA",
-                        "externaladdressunprotected" => $configLua['ip'],
-                        "externaladdressprotected" => $configLua['ip']
+                        "externaladdressunprotected" => Setting::get('server.ip'),
+                        "externaladdressprotected" => Setting::get('server.ip'),
+                        'externalportunprotected' => Setting::get('server.gameProtocolPort'),
+                        'externalportprotected' => Setting::get('server.gameProtocolPort'),
+                        "anticheatprotection" => false
                     ), 
                 ),
                 'characters' => $characters,
-            )
+            ),
+            
+            //Survey by: Cjaker
+            // 'survey' => array (
+            //     "id" => rand(0, 999999),
+            //     "invitationtext" => "Querido tibiano, obrigado por usar OTX, a base mais atualizada do Tibia Global.\n'Mensagem dita por Cjaker'.",
+            //     "invitationtoken" => "1751f1beddf001e1d36dee78ace974",
+            //     "endtimestamp" => 1510614000
+            // )
         );
         
         /**
